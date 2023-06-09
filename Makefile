@@ -87,6 +87,9 @@ ifndef DEBUG
 	$(MAKE) $(UNIT) DEBUG=1
 endif
 
+gdb					: $(UNIT)
+	gdb -q $(UNIT)
+
 clean				:
 	$(RM) $(OUTDIR)
 
@@ -96,6 +99,6 @@ fclean				:	clean
 re					:	fclean
 	$(MAKE) $(NAME)
 
-.PHONY				:	all bonus clean fclean re debug
+.PHONY				:	all bonus clean fclean re debug gdb
 
 -include	$(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.d))

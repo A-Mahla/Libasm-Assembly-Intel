@@ -19,7 +19,6 @@ increment:
   jmp loop
 
 loop:
-  mov rdx, [rdx+rax]
-  cmp rdx, 0x0
+  cmp byte [rdi+rax], 0x0
   jnz increment 
   ret
