@@ -23,7 +23,7 @@ LIBBONUSSRC			:=
 
 # ---
 
-UNITSRCDIR			:=	./unit_tests
+UNITSRCDIR			:=	unit_tests
 UNITOBJDIR 			:= 	units
 INCLUDEDIR			:=	-I ./include
 
@@ -50,7 +50,7 @@ BONUS				:=	$(LIBBONUS)
 
 OUTDIR 				:= ./obj
 OUTLIBDIR			:= $(addprefix $(OUTDIR)/, $(LIBSRCDIR))
-OUTUNITDIR 			:= $(addprefix $(OUTDIR)/, $(UNITOBJDIR))
+OUTUNITDIR 			:= $(addprefix $(OUTDIR)/, $(UNITSRCDIR))
 
 # ---
 
@@ -71,7 +71,7 @@ $(OUTLIBDIR)/%.o		:	$(LIBSRCDIR)/%.s
 
 $(OUTUNITDIR)/%.o	:	$(UNITSRCDIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) -MMD -MD $(CCFLAGS) $(OPTFLAG) $(INCLUDEDIR) $(LIBFLAGS) -o $@ -c $<
+	$(CC) -MMD -MD $(CCFLAGS) $(OPTFLAG) $(INCLUDEDIR) -o $@ -c $<
 
 $(NAME)				:	$(addprefix $(OUTLIBDIR)/,$(LIBSRC:.s=.o))
 	$(AR) $@ $^
@@ -80,11 +80,11 @@ $(BONUS)			:	$(addprefix $(OUTLIBDIR)/,$(BONUSSRC:.s=.o))
 	$(AR) $@ $^
 
 $(UNIT) 			: 	$(NAME) $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o))
-	$(CC) $(OPTFLAG) $(LIBFLAGS) -o $@ $^
+	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o)) $(LIBFLAGS) 
 
 debug 				:
 ifndef DEBUG
-	$(MAKE) DEBUG=1
+	$(MAKE) $(UNIT) DEBUG=1
 endif
 
 clean				:
@@ -98,4 +98,4 @@ re					:	fclean
 
 .PHONY				:	all bonus clean fclean re debug
 
--include	$(addprefix $(OUTUNITDIR)/,$(UNITOBJDIR:.c=.d))
+-include	$(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.d))
