@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2023/06/09 20:36:12 by ammah ###       ########     ########     #
+#    Updated: 2023/06/09 20:38:13 by ammah ###       ########     ########     #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ bonus				:	$(BONUS)
 
 $(OUTLIBDIR)/%.o		:	$(LIBSRCDIR)/%.s
 	@mkdir -p $(dir $@)
-	$(NASM) $(NASMFLAGS) $< -o $@
+	$(NASM) $(NASMFLAGS) -o $@ $<
 
 $(UNITOUTDIR)/%.o	:	$(UNITSRCDIR)/%.c $(LIBASM)
 	@mkdir -p $(dir $@)
