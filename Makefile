@@ -15,7 +15,7 @@
 LIBSRCDIR			:=	src
 LIBOBJDIR			:=	libasm
 
-LIBASM				:=	libft.a
+LIBASM				:=	libasm.a
 LIBSRC				:=	ft_strlen.s
 
 LIBBONUS			:=	libft_bonus.a
@@ -23,7 +23,7 @@ LIBBONUSSRC			:=
 
 # ---
 
-UNITDIR				:=	./unit_tests
+UNITSRCDIR			:=	./unit_tests
 UNITOBJDIR 			:= 	units
 INCLUDEDIR			:=	-I ./include
 
@@ -42,7 +42,7 @@ RM					:=	rm -rf
 
 NASMFLAGS			:=	-f elf64
 CCFLAGS				:=	-Wall -Wextra -Werror
-LIBFLAGS			:= 	-L -lasm
+LIBFLAGS			:= 	-L . -lasm
 OPTFLAG				:=
 
 NAME				:=	$(LIBASM)
@@ -69,9 +69,9 @@ $(OUTLIBDIR)/%.o		:	$(LIBSRCDIR)/%.s
 	@mkdir -p $(dir $@)
 	$(NASM) $(NASMFLAGS) -o $@ $<
 
-$(UNITOUTDIR)/%.o	:	$(UNITSRCDIR)/%.c $(LIBASM)
+$(OUTUNITDIR)/%.o	:	$(UNITSRCDIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) -c -MMD -MD $(CCFLAGS) $(OPTFLAG) $(INCLUDEDIR) $(LIBFLAG) -o $@ $<
+	$(CC) -MMD -MD $(CCFLAGS) $(OPTFLAG) $(INCLUDEDIR) $(LIBFLAGS) -o $@ -c $<
 
 $(NAME)				:	$(addprefix $(OUTLIBDIR)/,$(LIBSRC:.s=.o))
 	$(AR) $@ $^
@@ -79,8 +79,8 @@ $(NAME)				:	$(addprefix $(OUTLIBDIR)/,$(LIBSRC:.s=.o))
 $(BONUS)			:	$(addprefix $(OUTLIBDIR)/,$(BONUSSRC:.s=.o))
 	$(AR) $@ $^
 
-$(UNIT) 			: 	$(NAME) $(addprefix $(OUTUNITDIR)/,$(SRC:.c=.o))
-	$(CC) $(OPTFLAG) -o $@ $^
+$(UNIT) 			: 	$(NAME) $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o))
+	$(CC) $(OPTFLAG) $(LIBFLAGS) -o $@ $^
 
 debug 				:
 ifndef DEBUG
