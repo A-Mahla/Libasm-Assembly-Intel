@@ -71,7 +71,7 @@ $(OUTLIBDIR)/%.o		:	$(LIBSRCDIR)/%.s
 
 $(OUTUNITDIR)/%.o	:	$(UNITSRCDIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) -MMD -MD $(CCFLAGS) $(OPTFLAG) $(INCLUDEDIR) -o $@ -c $<
+	$(CC) -MMD -MD $(OPTFLAG) $(CCFLAGS) $(INCLUDEDIR) -o $@ -c $<
 
 $(NAME)				:	$(addprefix $(OUTLIBDIR)/,$(LIBSRC:.s=.o))
 	$(AR) $@ $^
