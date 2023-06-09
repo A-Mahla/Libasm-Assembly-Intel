@@ -5,7 +5,7 @@
 
 
 🔧 System Requirements:
-   - Operating System: Linux 64_X86
+   - Operating System: Linux 64_X86 Distribution
    - Software: [nasm](https://nasm.us/), [make](https://www.gnu.org/software/make/)
 
 ## Usage
