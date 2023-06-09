@@ -15,7 +15,7 @@ To run the command, open your terminal and follow these steps:
   - To create ```libasm.a```:
   
       ```shell
-      cd /path/to/project/directory && make lib
+      cd /path/to/project/directory && make
       ```
       
    - To run Units Tests:
