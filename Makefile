@@ -6,13 +6,13 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2023/06/09 20:16:59 by ammah ###       ########     ########     #
+#    Updated: 2023/06/09 20:36:12 by ammah ###       ########     ########     #
 #                                                                              #
 # **************************************************************************** #
 
 # ---
 
-LIBSRCDIR			:=	./src
+LIBSRCDIR			:=	src
 LIBOBJDIR			:=	libasm
 
 LIBASM				:=	libft.a
@@ -48,8 +48,9 @@ OPTFLAG				:=
 NAME				:=	$(LIBASM)
 BONUS				:=	$(LIBBONUS)
 
-OUTDIR				:= $(addprefix obj/, $(LIBSRCDIR))
-OUTUNITDIR 			:= $(addprefix obj/, $(UNITOBJDIR))
+OUTDIR 				:= ./obj
+OUTLIBDIR			:= $(addprefix $(OUTDIR)/, $(LIBSRCDIR))
+OUTUNITDIR 			:= $(addprefix $(OUTDIR)/, $(UNITOBJDIR))
 
 # ---
 
@@ -64,18 +65,18 @@ all 				: 	$(NAME)
 
 bonus				:	$(BONUS)
 
-$(OUTDIR)/%.o		:	$(SRCDIR)/%.s
+$(OUTLIBDIR)/%.o		:	$(LIBSRCDIR)/%.s
 	@mkdir -p $(dir $@)
-	$(NASM) $(NASMFLAGS) -o $@ $<
+	$(NASM) $(NASMFLAGS) $< -o $@
 
 $(UNITOUTDIR)/%.o	:	$(UNITSRCDIR)/%.c $(LIBASM)
 	@mkdir -p $(dir $@)
 	$(CC) -c -MMD -MD $(CCFLAGS) $(OPTFLAG) $(INCLUDEDIR) $(LIBFLAG) -o $@ $<
 
-$(NAME)				:	$(addprefix $(OUTDIR)/,$(SRC:.s=.o))
+$(NAME)				:	$(addprefix $(OUTLIBDIR)/,$(LIBSRC:.s=.o))
 	$(AR) $@ $^
 
-$(BONUS)			:	$(addprefix $(OUTDIR)/,$(BONUSSRC:.s=.o))
+$(BONUS)			:	$(addprefix $(OUTLIBDIR)/,$(BONUSSRC:.s=.o))
 	$(AR) $@ $^
 
 $(UNIT) 			: 	$(NAME) $(addprefix $(OUTUNITDIR)/,$(SRC:.c=.o))
@@ -87,10 +88,10 @@ ifndef DEBUG
 endif
 
 clean				:
-	$(RM) -rf $(OBJDIR) $(BONUSOUTDIR) $(DEBUGDIR)
+	$(RM) $(OUTDIR)
 
 fclean				:	clean
-	$(RM) -f $(PROGNAME) $(PROGNAME_BONUS) $(DEBUGNAME) $(BONUSDEBUGNAME) $(FLORANNAME)
+	$(RM) $(NAME) $(UNIT)
 
 re					:	fclean
 	$(MAKE) $(NAME)
