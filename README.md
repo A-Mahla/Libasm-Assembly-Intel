@@ -21,7 +21,7 @@ To run the command, open your terminal and follow these steps:
    - To run Units Tests:
 
       ```shell
-      cd /path/to/project/directory && make && ./units
+      cd /path/to/project/directory && make units && ./units
       ```
 
 
