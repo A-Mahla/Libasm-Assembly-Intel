@@ -24,7 +24,7 @@ ft_strcpy_loop:
   ret
 
 ; Note: in assembly you cannot assign directly an indirect value pointed
-;       by a register with an indirect value pointed by another pointer
+;       by a register with an indirect value pointed by another register
 ;       Example:
 ;          You can't do => *a = *b
 ;          You have to do => c = *b && *a = c
