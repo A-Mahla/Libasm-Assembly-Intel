@@ -2,6 +2,8 @@
 #include "libasm.h"
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
+#include <unistd.h>
 
 
 void    ftStrlenTest( void ) {
@@ -35,7 +37,8 @@ void    ftStrcmpTest( void ) {
 
 void    ftWriteTest( void ) {
 
-  ft_write(1, "Salut\n", 6);
+  ft_write(-1, "Salut\n", 6);
+  printf("%d\n", errno);
 
 }
 

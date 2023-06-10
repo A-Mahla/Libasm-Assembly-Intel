@@ -45,7 +45,7 @@ RM					:=	rm -rf
 
 NASMFLAGS			:=	-f elf64
 CCFLAGS				:=	-Wall -Wextra -Werror
-LIBFLAGS			:= 	-L . -lasm
+LIBFLAGS			:= -L . -lasm
 OPTFLAG				:=
 
 NAME				:=	$(LIBASM)
@@ -83,7 +83,7 @@ $(BONUS)			:	$(addprefix $(OUTLIBDIR)/,$(BONUSSRC:.s=.o))
 	$(AR) $@ $^
 
 $(UNIT) 			: 	$(NAME) $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o))
-	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o)) $(LIBFLAGS) 
+	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o)) $(LIBFLAGS)
 
 debug 				:
 ifndef DEBUG
