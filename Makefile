@@ -16,7 +16,8 @@ LIBSRCDIR			:=	src
 LIBOBJDIR			:=	libasm
 
 LIBASM				:=	libasm.a
-LIBSRC				:=	ft_strlen.s
+LIBSRC				:=	ft_strlen.s \
+						ft_strcpy.s
 
 LIBBONUS			:=	libft_bonus.a
 LIBBONUSSRC			:=	
@@ -65,7 +66,7 @@ all 				: 	$(NAME)
 
 bonus				:	$(BONUS)
 
-$(OUTLIBDIR)/%.o		:	$(LIBSRCDIR)/%.s
+$(OUTLIBDIR)/%.o	:	$(LIBSRCDIR)/%.s
 	@mkdir -p $(dir $@)
 	$(NASM) $(NASMFLAGS) -o $@ $<
 
