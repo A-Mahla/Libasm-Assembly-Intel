@@ -43,12 +43,22 @@ void    ftWriteTest( void ) {
 }
 
 
+void    ftReadTest( void ) {
+
+  char buf[10];
+  ft_read(0, buf, 9);
+  printf("%d\n", errno);
+
+}
+
+
 int     main(void) {
 
 //  ftStrlenTest();
 //  ftStrcpyTest();
 //  ftStrcmpTest();
-  ftWriteTest();
+//  ftWriteTest();
+  ftReadTest();
   return 0;
 
 }
