@@ -4,6 +4,7 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 
 void    ftStrlenTest( void ) {
@@ -52,13 +53,25 @@ void    ftReadTest( void ) {
 }
 
 
+void    ftStrdupTest( void ) {
+
+  char  *str = "Salut";
+
+  char *ret = ft_strdup(str);
+  printf("%s\n", ret);
+  free(ret);
+
+}
+
+
 int     main(void) {
 
 //  ftStrlenTest();
 //  ftStrcpyTest();
 //  ftStrcmpTest();
 //  ftWriteTest();
-  ftReadTest();
+//  ftReadTest();
+  ftStrdupTest();
   return 0;
 
 }

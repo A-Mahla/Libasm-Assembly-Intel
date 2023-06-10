@@ -11,10 +11,17 @@ ft_strdup:
   push rdi
   call ft_strlen
   mov rdi, rax
-  call malloc
+  call malloc WRT ..plt
+  cmp rax, 0x0
+  jz ft_strdup_null
   mov rdi, rax
   pop rsi
   call ft_strcpy
+  pop rbp
+  ret
+
+ft_strdup_null:
+  pop rdi
   pop rbp
   ret
 
