@@ -10,7 +10,7 @@ ft_write:
   syscall
   test rax, rax
   jge ft_write_success
-  mov rbx, rax                     ; stock return value of write syscall un rbx
+  mov rbx, rax                     ; stock return value of write syscall in rbx
   call __errno_location WRT ..plt  ; calling to return pointer to errno location in rax
   mov [rax], rbx                   ; set errno with write syscall return value
   pop rbp
