@@ -5,20 +5,20 @@ section .text
 ft_strlen:
   push rbp
   mov rbp, rsp
-  call init
-  call loop
+  call ft_strlen_init
+  call ft_strlen_loop
   pop rbp
   ret
 
-init:
+ft_strlen_init:
   xor rax, rax
   ret
 
-increment:
+ft_strlen_inc:
   inc rax
-  jmp loop
+  jmp ft_strlen_loop
 
-loop:
+ft_strlen_loop:
   cmp byte [rdi+rax], 0x0
-  jnz increment 
+  jnz ft_strlen_inc
   ret
