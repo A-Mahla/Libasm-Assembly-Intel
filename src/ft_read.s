@@ -10,7 +10,7 @@ ft_read:
   syscall
   test rax, rax
   jge ft_read_success
-  mov rbx, rax                     ; stock return value of read syscall un rbx
+  mov rbx, rax                     ; stock return value of read syscall in rbx
   call __errno_location WRT ..plt  ; calling to return pointer to errno location in rax
   mov [rax], rbx                   ; set errno with read syscall return value
   pop rbp
