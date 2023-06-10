@@ -27,9 +27,9 @@ To run the command, open your terminal and follow these steps:
 
 ## Functions
 
-- [ft_strlen](libasm/src/ft_strlen.s) - *man 3 strlen*
-- [ft_strcpy](libasm/src/ft_strcpy.s) - *man 3 strcpy*
-- [ft_strcmp](libasm/src/ft_strcmp.s) - *man 3 strcmp*
+- [ft_strlen](src/ft_strlen.s) - *man 3 strlen*
+- [ft_strcpy](src/ft_strcpy.s) - *man 3 strcpy*
+- [ft_strcmp](src/ft_strcmp.s) - *man 3 strcmp*
 - [ft_write](libasm/src/ft_write.s) - *man 2 write*
 - [ft_read](libasm/src/ft_read.s) - *man 2 read*
 - [ft_strdup](libasm/src/ft_strdup.s) - *man 3 strdup*
