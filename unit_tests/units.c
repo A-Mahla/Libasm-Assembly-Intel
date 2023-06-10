@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
+
 void    ftStrlenTest( void ) {
 
   char *str1 = "Salut";
@@ -24,9 +25,17 @@ void    ftStrcpyTest( void ) {
 
 void    ftStrcmpTest( void ) {
 
-  char  *str1 = "Helloooo";
-  char  *str2 = "Helloo";
+  char  *str1 = "Hellooo";
+  char  *str2 = "Helloooo";
   printf("%d\n", ft_strcmp(str1, str2));
+  printf("%d\n", strcmp(str1, str2));
+
+}
+
+
+void    ftWriteTest( void ) {
+
+  ft_write(1, "Salut\n", 6);
 
 }
 
@@ -35,7 +44,8 @@ int     main(void) {
 
 //  ftStrlenTest();
 //  ftStrcpyTest();
-  ftStrcmpTest();
+//  ftStrcmpTest();
+  ftWriteTest();
   return 0;
 
 }

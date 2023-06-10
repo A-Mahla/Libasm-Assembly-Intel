@@ -6,7 +6,7 @@ global .text
 ft_strcpy:
   push rbp
   mov rbp, rsp
-  mov rax, [rbp+8]
+  mov rax, rdi
   call ft_strcpy_loop
   pop rbp
   ret

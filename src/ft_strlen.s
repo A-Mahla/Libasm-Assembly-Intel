@@ -5,13 +5,9 @@ section .text
 ft_strlen:
   push rbp
   mov rbp, rsp
-  call ft_strlen_init
+  xor rax, rax            ; set rax = 0x0
   call ft_strlen_loop
   pop rbp
-  ret
-
-ft_strlen_init
-  xor rax, rax           ; set rax = 0x0
   ret
 
 ft_strlen_inc:
