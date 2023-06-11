@@ -1,5 +1,6 @@
 # Executable
 units
+units_bonus
 
 # Prerequisites
 *.d

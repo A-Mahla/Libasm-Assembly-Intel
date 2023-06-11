@@ -35,15 +35,16 @@ ft_atoi_base:
 ;  xor rcx, rcx
 ;  jmp ft_atoi_is_wspace_loop
 ;
-;ft_atoi_check_base_error:
-;  mov rax, 1
-;  ret
-;
+ft_atoi_check_base_error:
+  xor rax, rax
+  mov rax, 0
+  ret
+
 ft_atoi_check_base:
   mov rdi, rsi
   call ft_strlen
   cmp rax, 1
-  ;jle ft_atoi_check_base_error
+  jle ft_atoi_check_base_error
   ;xor rax, rax
   ;xor rcx, rcx
   ;jmp ft_atoi_check_base_loop

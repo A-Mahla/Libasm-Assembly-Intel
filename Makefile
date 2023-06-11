@@ -23,8 +23,9 @@ LIBSRC				:=	ft_strlen.s \
 						ft_read.s   \
 						ft_strdup.s
 
-LIBBONUS			:=	libft_bonus.a
-LIBBONUSSRC			:=	
+LIBBONUS			:=	libasm_bonus.a
+LIBBONUSSRC			:=	ft_strlen.s \
+						ft_atoi_base.s
 
 # ---
 
@@ -35,8 +36,8 @@ INCLUDEDIR			:=	-I ./include
 UNIT				:=	units
 UNITSRC 			:= 	units.c
 
-UNIT_BONUS			:=	$(PROGNAME)_bonus
-UNIBONUSTSRC 		:=
+UNITBONUS			:=	$(UNIT)_bonus
+UNITBONUSSRC 		:=	units_bonus.c
 
 # ---
 
@@ -48,6 +49,7 @@ RM					:=	rm -rf
 NASMFLAGS			:=	-f elf64
 CCFLAGS				:=	-Wall -Wextra -Werror
 LIBFLAGS			:= -L . -lasm
+LIBBONUSFLAGS		:= -L . -lasm_bonus
 OPTFLAG				:=
 
 NAME				:=	$(LIBASM)
@@ -81,11 +83,14 @@ $(OUTUNITDIR)/%.o	:	$(UNITSRCDIR)/%.c
 $(NAME)				:	$(addprefix $(OUTLIBDIR)/,$(LIBSRC:.s=.o))
 	$(AR) $@ $^
 
-$(BONUS)			:	$(addprefix $(OUTLIBDIR)/,$(BONUSSRC:.s=.o))
+$(BONUS)			:	$(addprefix $(OUTLIBDIR)/,$(LIBBONUSSRC:.s=.o))
 	$(AR) $@ $^
 
-$(UNIT) 			: 	$(NAME) $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o))
+$(UNIT) 			: 	$(LIBASM) $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o))
 	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o)) $(LIBFLAGS)
+
+$(UNITBONUS) 		: 	$(LIBBONUS) $(addprefix $(OUTUNITDIR)/,$(UNITBONUSSRC:.c=.o))
+	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITBONUSSRC:.c=.o)) $(LIBBONUSFLAGS)
 
 debug 				:
 ifndef DEBUG
@@ -99,7 +104,7 @@ clean				:
 	$(RM) $(OUTDIR)
 
 fclean				:	clean
-	$(RM) $(NAME) $(UNIT)
+	$(RM) $(NAME) $(LIBBONUS) $(UNIT) $(UNITBONUS)
 
 re					:	fclean
 	$(MAKE) $(NAME)
