@@ -74,8 +74,8 @@ ft_atoi_check_base_syntax_unique_loop:
   cmp bl, dl
   je ft_atoi_check_base_error
   cmp dl, 0
-  movz QWORD ecx, 1
-  movz rdi, rdi+1
+  cmovz QWORD ecx, 1
+  cmovz rdi, rdi+1
   jmp ft_atoi_check_base_syntax_unique_loop:
 
 ft_atoi_check_base_syntax_wspace_loop:
