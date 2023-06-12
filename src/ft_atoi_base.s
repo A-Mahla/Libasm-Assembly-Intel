@@ -66,6 +66,16 @@ ft_atoi_check_base_success:
   leave
   ret
 
+ft_atoi_check_base_syntax_wspace_loop:
+  mov bl, BYTE [rdi]
+  cmp bl, 0
+  jz ft_atoi_check_base_end
+  call ft_atoi_check_is_wspace
+  cmp rax, 1
+  je ft_atoi_check_base_error
+  inc rdi
+  jmp ft_atoi_check_base_syntax_wspace_loop
+
 ft_atoi_check_base_syntax_unique_loop:
   mov bl, BYTE [rdi]
   cmp bl, 0
@@ -73,40 +83,12 @@ ft_atoi_check_base_syntax_unique_loop:
   mov dl, BYTE [rdi+rcx]
   cmp bl, dl
   je ft_atoi_check_base_error
-  cmp dl, 0
-  cmovz rcx, 1
-  cmovz rdi, rdi+1
-  jmp ft_atoi_check_base_syntax_unique_loop:
-
-ft_atoi_check_base_syntax_wspace_loop:
-  mov bl, BYTE [rdi]
-  cmp bl, 0
-  jz ft_ret
-  call ft_atoi_check_is_wspace
-  cmp rax, 1
-  je ft_atoi_check_base_error
-  inc rdi
-  jmp ft_atoi_check_base_syntax_loop
-
-ft_atoi_check_base_syntax_loop:
-  enter 0, 0
-  push rdi
-  call ft_atoi_check_base_syntax_wspace_loop
-  pop rdi
+  inc rcx
+  cmp BYTE [rdi+rcx], 0
+  jne ft_atoi_check_base_syntax_unique_loop
   mov QWORD rcx, 1
+  inc rdi
   jmp ft_atoi_check_base_syntax_unique_loop
-
-
-ft_atoi_check_base_syntax:
-  enter 0, 0
-  xor rax, rax
-  call ft_atoi_check_base_syntax_loop
-  cmp rax, 1
-  je ft_atoi_check_base_error
-  mov rax, 1
-  jmp ft_atoi_check_base_syntax_loop
-  leave
-  ret
 
 ft_atoi_check_base:
   enter 0, 0
@@ -115,10 +97,13 @@ ft_atoi_check_base:
   pop rdi
   cmp rax, 1
   jle ft_atoi_check_base_error
+  xor rax, rax
   push rdi
-  call ft_atoi_check_base_syntax
+  jmp ft_atoi_check_base_syntax_wspace_loop
+
+ft_atoi_check_base_end
   pop rdi
-  cmp rax, 0
-  je ft_atoi_check_base_error
+  mov QWORD rcx, 1
+  jmp ft_atoi_check_base_syntax_unique_loop
   leave
   ret
