@@ -17,6 +17,8 @@ ft_atoi_base:
   call ft_atoi_check_base
   pop rsi
   pop rdi
+  mov QWORD r8, 0
+  mov QWORD r9, 1
   leave
   ret
 
