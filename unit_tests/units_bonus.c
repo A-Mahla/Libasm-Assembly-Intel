@@ -6,7 +6,7 @@
 
 void    ftAtoiBaseTest( void ) {
 
-  char *str = "Salut";
+  char *str = "-Salut";
   char *base = "h324";
   int ret;
 
