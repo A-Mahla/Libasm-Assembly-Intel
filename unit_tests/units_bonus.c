@@ -7,7 +7,7 @@
 void    ftAtoiBaseTest( void ) {
 
   char *str = "Salut";
-  char *base = "h3244";
+  char *base = "h324";
   int ret;
 
   ret = ft_atoi_base(str, base);
