@@ -20,6 +20,8 @@ ft_atoi_base:
   leave
   ret
 
+ft_ret:
+  ret
 
 ; =========== is white space ==========
 
@@ -64,22 +66,41 @@ ft_atoi_check_base_success:
   leave
   ret
 
-ft_atoi_check_base_syntax_loop:
+ft_atoi_check_base_syntax_unique_loop:
   mov bl, BYTE [rdi]
-  inc rdi
-  cmp BYTE [rdi], 0
+  cmp bl, 0
   jz ft_atoi_check_base_success
-  cmp bl, BYTE [rdi]
+  mov dl, BYTE [rdi+exc]
+  cmp bl, dl
   je ft_atoi_check_base_error
+  cmp dl, 0
+  movz QWORD ecx, 1
+  movz rdi, rdi+1
+  jmp ft_atoi_check_base_syntax_unique_loop:
+
+ft_atoi_check_base_syntax_wspace_loop:
+  mov bl, BYTE [rdi]
+  cmp bl, 0
+  jz ft_ret
   call ft_atoi_check_is_wspace
   cmp rax, 1
   je ft_atoi_check_base_error
+  inc rdi
   jmp ft_atoi_check_base_syntax_loop
+
+ft_atoi_check_base_syntax_loop:
+  enter 0, 0
+  push rdi
+  call ft_atoi_check_base_syntax_wspace_loop
+  pop rdi
+  mov QWORD rcx, 1
+  jmp ft_atoi_check_base_syntax_unique_loop
+
 
 ft_atoi_check_base_syntax:
   enter 0, 0
   xor rax, rax
-  call ft_atoi_check_is_wspace
+  call ft_atoi_check_base_syntax_loop
   cmp rax, 1
   je ft_atoi_check_base_error
   mov rax, 1
