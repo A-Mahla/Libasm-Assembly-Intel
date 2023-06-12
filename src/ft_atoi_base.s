@@ -70,11 +70,11 @@ ft_atoi_check_base_syntax_unique_loop:
   mov bl, BYTE [rdi]
   cmp bl, 0
   jz ft_atoi_check_base_success
-  mov dl, BYTE [rdi+ecx]
+  mov dl, BYTE [rdi+rcx]
   cmp bl, dl
   je ft_atoi_check_base_error
   cmp dl, 0
-  cmovz ecx, 1
+  cmovz rcx, 1
   cmovz rdi, rdi+1
   jmp ft_atoi_check_base_syntax_unique_loop:
 
