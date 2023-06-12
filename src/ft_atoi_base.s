@@ -45,6 +45,7 @@ ft_atoi_check_is_wspace_loop:
 ft_atoi_check_is_wspace:
   enter 8, 0
   xor rax, rax
+  mov QWORD [rsp], 0
   mov bl, BYTE [rdi]
   jmp ft_atoi_check_is_wspace_loop
 
@@ -57,8 +58,23 @@ ft_atoi_check_base_error:
   leave
   ret
 
-;ft_atoi_check_base_loop:
-;  
+ft_atoi_check_base_success:
+  xor rax, rax
+  mov rax, 1
+  leave
+  ret
+
+ft_atoi_check_base_syntax_loop:
+  mov bl, BYTE [rdi]
+  inc rdi
+  cmp BYTE [rdi], 0
+  jz ft_atoi_check_base_success
+  cmp bl, BYTE [rdi]
+  je ft_atoi_check_base_error
+  call ft_atoi_check_is_wspace
+  cmp rax, 1
+  je ft_atoi_check_base_error
+  jmp ft_atoi_check_base_syntax_loop
 
 ft_atoi_check_base_syntax:
   enter 0, 0
@@ -66,8 +82,8 @@ ft_atoi_check_base_syntax:
   call ft_atoi_check_is_wspace
   cmp rax, 1
   je ft_atoi_check_base_error
-;  jmp ft_atoi_check_bas_syntaxe_loop
   mov rax, 1
+  jmp ft_atoi_check_base_syntax_loop
   leave
   ret
 
