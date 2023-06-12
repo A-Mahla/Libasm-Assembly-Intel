@@ -66,11 +66,11 @@ void    ftStrdupTest( void ) {
 
 int     main(void) {
 
-//  ftStrlenTest();
-//  ftStrcpyTest();
-//  ftStrcmpTest();
-//  ftWriteTest();
-//  ftReadTest();
+  ftStrlenTest();
+  ftStrcpyTest();
+  ftStrcmpTest();
+  ftWriteTest();
+  ftReadTest();
   ftStrdupTest();
   return 0;
 

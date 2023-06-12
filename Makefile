@@ -42,7 +42,7 @@ UNITBONUSSRC 		:=	units_bonus.c
 # ---
 
 NASM				:=	nasm
-CC 					:= 	gcc
+CC 					:= 	clang
 AR 					:= 	ar rcs
 RM					:=	rm -rf
 
@@ -78,13 +78,15 @@ $(OUTLIBDIR)/%.o	:	$(LIBSRCDIR)/%.s
 
 $(OUTUNITDIR)/%.o	:	$(UNITSRCDIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) -MMD -MD $(OPTFLAG) $(CCFLAGS) $(INCLUDEDIR) -o $@ -c $<
+	$(CC) -MMD -MF $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.d)) $(OPTFLAG) $(CCFLAGS) $(INCLUDEDIR) -o $@ -c $<
 
 $(NAME)				:	$(addprefix $(OUTLIBDIR)/,$(LIBSRC:.s=.o))
 	$(AR) $@ $^
+	ranlib $@
 
 $(BONUS)			:	$(addprefix $(OUTLIBDIR)/,$(LIBBONUSSRC:.s=.o))
 	$(AR) $@ $^
+	ranlib $@
 
 $(UNIT) 			: 	$(LIBASM) $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o))
 	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o)) $(LIBFLAGS)
