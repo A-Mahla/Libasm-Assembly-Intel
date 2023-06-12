@@ -80,7 +80,7 @@ ft_atoi_check_base:
   push rdi
   call ft_atoi_check_base_syntax
   pop rdi
-  cmp rax, 1
+  cmp rax, 0
   je ft_atoi_check_base_error
   leave
   ret
