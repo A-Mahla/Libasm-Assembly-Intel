@@ -34,17 +34,18 @@ ft_atoi_is_wspace_exit_nofind:
   ret
 
 ft_atoi_check_is_wspace_loop:
-  cmp byte [wspace+rsp], 0
+  mov rax, [rsp]
+  cmp BYTE [wspace+rax], 0
   jz ft_atoi_is_wspace_exit_nofind
-  cmp bl, byte [wspace+rsp]
+  cmp bl, BYTE [wspace+rax]
   je ft_atoi_is_wspace_exit_find
-  add rsp, 1
+  add DWORD [rsp], 1
   jmp ft_atoi_check_is_wspace_loop
 
 ft_atoi_check_is_wspace:
-  enter 4, 0
+  enter 8, 0
   xor rax, rax
-  mov bl, byte [rdi]
+  mov bl, BYTE [rdi]
   jmp ft_atoi_check_is_wspace_loop
 
 
@@ -60,7 +61,7 @@ ft_atoi_check_base_error:
 ;  
 
 ft_atoi_check_base_syntax:
-  enter 8, 0
+  enter 0, 0
   xor rax, rax
   call ft_atoi_check_is_wspace
   cmp rax, 1
