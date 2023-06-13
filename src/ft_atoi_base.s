@@ -26,7 +26,21 @@ ft_atoi_base:
   leave
   ret
 
-; =========== is in string ( white space or base ) ==========
+; ==================== results boolean =================
+
+ft_atoi_base_error:
+  xor rax, rax
+  mov rax, 0
+  leave
+  ret
+
+ft_atoi_base_success:
+  xor rax, rax
+  mov rax, 1
+  leave
+  ret
+
+; =========== is in string (white-space / base) ==========
 
 ft_atoi_is_in_string_exit_find:
   leave
@@ -55,18 +69,6 @@ ft_atoi_check_is_in_string:
 
 
 ; =============== Atoi check base =============
-
-ft_atoi_base_error:
-  xor rax, rax
-  mov rax, 0
-  leave
-  ret
-
-ft_atoi_base_success:
-  xor rax, rax
-  mov rax, 1
-  leave
-  ret
 
 ft_atoi_check_base_syntax_wspace_loop:
   mov bl, BYTE [rdi]
