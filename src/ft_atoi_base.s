@@ -20,7 +20,8 @@ ft_atoi_base:
   pop rdi
   mov QWORD r8, 0
   mov QWORD r9, 1
-  cmp rax, 1
+  cmp rax, 0
+  je ft_atoi_base_error
   call ft_atoi_compute_result
   leave
   ret
