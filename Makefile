@@ -24,9 +24,10 @@ LIBSRC				:=	ft_strlen.s \
 						ft_strdup.s
 
 LIBBONUS			:=	libasm_bonus.a
-LIBBONUSSRC			:=	ft_strlen.s \
-						ft_atoi_base_bonus.s \
-						ft_list_push_front_bonus.s
+LIBBONUSSRC			:=	ft_strlen.s 				\
+						ft_atoi_base_bonus.s 		\
+						ft_list_push_front_bonus.s 	\
+						ft_list_size_bonus.s
 
 # ---
 

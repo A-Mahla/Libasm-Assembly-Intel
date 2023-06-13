@@ -34,7 +34,7 @@ To run the command, open your terminal and follow these steps:
 - [ft_read](src/ft_read.s) - *man 2 read*
 - [ft_strdup](src/ft_strdup.s) - *man 3 strdup*
 - [ft_atoi_base](src/ft_atoi_base_bonus.s) - ```int ft_atoi_base(char *str, char *base);```
-- [ft_list_push_front](src/ft_list_push_front_bonus.s) - ```void ft_list_push_front(t_list **, void \data);```
+- [ft_list_push_front](src/ft_list_push_front_bonus.s) - ```void ft_list_push_front(t_list **, void data);```
 - [ft_list_size](src/ft_list_size_bonus.s) - ```int ft_list_size(t_list *);```
 - [ft_list_sort](src/ft_list_sort_bonus.s) - ```void ft_list_sort(t_list **, int (*cmp)());```
 - [ft_list_remove_if](src/ft_list_remove_if_bonus.s) - ```void ft_list_remove_if(t_list **, void *data_ref, int (*cmp)(void *,void *), void (*free_fn)(void *));```

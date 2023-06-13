@@ -61,12 +61,20 @@ void    printList( t_list *begin ) {
 
 }
 
+void    ftListSizeTest(t_list *begin) {
+
+  printf("%d\n", ft_list_size(begin));
+  printf("%d\n", ft_list_size(NULL));
+
+}
+
 int     main(void) {
 
   t_list    *begin = NULL;
 
 //  ftAtoiBaseTest();
   begin = ftListPushFrontTest();
+  ftListSizeTest(begin);
   printList(begin);
   return 0;
 
