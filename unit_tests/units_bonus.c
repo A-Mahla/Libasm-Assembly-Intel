@@ -35,7 +35,7 @@ t_list    *ftListPushFrontTest( void ) {
       return NULL;
     }
     sprintf(tmp, "Hi from %ld element to be entered in the list !", i + 1);
-    memmove(str[i], tmp, strlen(tmp) + 1);
+    memmove(str[i], tmp, ft_strlen(tmp) + 1);
 
   }
 
@@ -68,13 +68,20 @@ void    ftListSizeTest(t_list *begin) {
 
 }
 
+void    ftListSortTest( t_list *begin ) {
+
+  ft_list_sort(&begin, &ft_strcmp);
+
+}
+
 int     main(void) {
 
-//  t_list    *begin = NULL;
+  t_list    *begin = NULL;
 
-  ftAtoiBaseTest();
-//  begin = ftListPushFrontTest();
+//  ftAtoiBaseTest();
+  begin = ftListPushFrontTest();
 //  ftListSizeTest(begin);
+  ftListSortTest(begin);
 //  printList(begin);
   return 0;
 

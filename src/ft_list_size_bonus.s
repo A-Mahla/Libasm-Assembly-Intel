@@ -1,22 +1,18 @@
 
-global ft_list_sort
+global ft_list_size
 
 section .text
-ft_list_sort:              ; rdi = t_list **begin, rsi = int (*cmp)()
+ft_list_size:              ; rdi = t_list *begin
   enter 0, 0
-  mov rax, QWORD [rdi]     ; rax = t_list *elem, rbx = t_list *prev, rcx = t_list *next
-  mov QWORD rbx, 0x0
-  cmp rax, 0
-  jz ft_list_sort_ret
+  xor rax, rax
 
-ft_list_sort_loop:
-  mov rdx, [rax+8]
-  cmp rdx, 0x0             ; if next = NULL
-  je ft_list_sort_ret
+ft_list_size_loop:
+  cmp rdi, 0x0             ; if begin = NULL
+  je ft_list_size_ret
   inc rax                  ; i++
   mov rdi, QWORD [rdi+8]   ; begin = begin->next
-  jmp ft_list_sort_loop
+  jmp ft_list_size_loop
 
-ft_list_sort_ret:
+ft_list_size_ret:
   leave
   ret
