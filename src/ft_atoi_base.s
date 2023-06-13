@@ -11,6 +11,10 @@ section .text
 
 ft_atoi_base:
   enter 0, 0
+  cmp rdi, 0x0
+  je ft_atoi_base_error
+  cmp rsi, 0x0
+  je ft_atoi_base_error
   push rdi
   push rsi
   mov rdi, rsi
@@ -136,10 +140,9 @@ ft_atoi_compute_result_final:
   cmp rax, -1
   je ft_atoi_base_final
   mov QWORD [rsp], rax
-  push rdi
-  mov rdi,rsi
+  xchg rdi, rsi
   call ft_strlen
-  pop rdi
+  xchg rdi, rsi
   imul r8, rax
   add r8, QWORD [rsp]
   inc rdi
