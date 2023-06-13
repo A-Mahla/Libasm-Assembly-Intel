@@ -125,10 +125,25 @@ ft_atoi_compute_result_while_wspace:
 ft_atoi_compute_result_while_wspace_loop:
   inc rdi
   jmp ft_atoi_compute_result_while_wspace
-  
+
+ft_atoi_compute_result_final:
+  cmp BYTE [rdi], 0
+  je ft_atoi_base_final
+  call ft_atoi_check_is_in_string
+  cmp rax, -1
+  je ft_atoi_base_final
+  mov QWORD [rsp], rax
+  push rdi
+  mov rdi,rsi
+  call ft_strlen
+  pop rdi
+  imul r8, rax
+  add r8, QWORD [rsp]
+  inc rdi
+  jmp ft_atoi_compute_result_final
 
 ft_atoi_compute_result:
-  enter 0, 0
+  enter 8, 0
   xor rcx, rcx
   push rsi
   mov rsi, wspace
@@ -136,5 +151,10 @@ ft_atoi_compute_result:
 
 ft_atoi_compute_result_middle
   pop rsi
+  jmp ft_atoi_compute_result_final
+
+ft_atoi_base_final:
+  imul r8, r9
+  mov QWORD rax, r8
   leave
   ret
