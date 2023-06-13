@@ -30,7 +30,7 @@ ft_atoi_base:
   leave
   ret
 
-; ==================== results boolean =================
+; ==================== boolean ret tools =================
 
 ft_atoi_base_error:
   xor rax, rax
@@ -46,14 +46,11 @@ ft_atoi_base_success:
 
 ; =========== is in string (white-space / base) ==========
 
-ft_atoi_is_in_string_exit_find:
-  leave
-  ret
-
-ft_atoi_is_in_string_exit_nofind:
-  mov QWORD rax, -1
-  leave
-  ret
+ft_atoi_check_is_in_string:
+  enter 8, 0
+  xor rax, rax
+  mov QWORD [rsp], 0
+  mov bl, BYTE [rdi]           ; continue to next function
 
 ft_atoi_check_is_in_string_loop:
   mov rax, [rsp]
@@ -64,25 +61,40 @@ ft_atoi_check_is_in_string_loop:
   add DWORD [rsp], 1
   jmp ft_atoi_check_is_in_string_loop
 
-ft_atoi_check_is_in_string:
-  enter 8, 0
-  xor rax, rax
-  mov QWORD [rsp], 0
-  mov bl, BYTE [rdi]
-  jmp ft_atoi_check_is_in_string_loop
+ft_atoi_is_in_string_exit_find:
+  leave
+  ret
 
+ft_atoi_is_in_string_exit_nofind:
+  mov QWORD rax, -1
+  leave
+  ret
 
 ; =============== Atoi check base =============
+
+ft_atoi_check_base:
+  enter 8, 0
+  push rdi
+  call ft_strlen
+  pop rdi
+  cmp rax, 1
+  jle ft_atoi_base_error
+  xor rax, rax
+  mov QWORD [rsp], rdi           ; continue to next function
 
 ft_atoi_check_base_syntax_wspace_loop:
   mov bl, BYTE [rdi]
   cmp bl, 0
-  jz ft_atoi_check_base_end
+  jz ft_atoi_check_base_middle
   call ft_atoi_check_is_in_string
   cmp rax, -1
   jne ft_atoi_base_error
   inc rdi
   jmp ft_atoi_check_base_syntax_wspace_loop
+
+ft_atoi_check_base_middle:
+  mov rdi, QWORD [rsp]
+  mov QWORD rcx, 1               ; continue to next function
 
 ft_atoi_check_base_syntax_unique_loop:
   mov bl, BYTE [rdi]
@@ -98,27 +110,13 @@ ft_atoi_check_base_syntax_unique_loop:
   inc rdi
   jmp ft_atoi_check_base_syntax_unique_loop
 
-ft_atoi_check_base:
-  enter 8, 0
-  push rdi
-  call ft_strlen
-  pop rdi
-  cmp rax, 1
-  jle ft_atoi_base_error
-  xor rax, rax
-  mov QWORD [rsp], rdi
-  jmp ft_atoi_check_base_syntax_wspace_loop
-
-ft_atoi_check_base_end:
-  mov rdi, QWORD [rsp]
-  mov QWORD rcx, 1
-  jmp ft_atoi_check_base_syntax_unique_loop
-
 ; =========== Compute result =============
 
-ft_change_sign:
-  imul r9, r9, -1
-  jmp ft_atoi_compute_result_while_wspace_loop
+ft_atoi_compute_result:
+  enter 8, 0
+  xor rcx, rcx
+  push rsi
+  mov rsi, wspace        ; continue to next function
 
 ft_atoi_compute_result_while_wspace:
   cmp BYTE [rdi], 0
@@ -126,14 +124,17 @@ ft_atoi_compute_result_while_wspace:
   call ft_atoi_check_is_in_string
   cmp rax, -1
   je ft_atoi_compute_result_middle
-  cmp BYTE [rdi], '-'
-  je ft_change_sign
-
-ft_atoi_compute_result_while_wspace_loop:
+  mov bl, BYTE [rdi]
   inc rdi
+  cmp bl, '-'
+  jne ft_atoi_compute_result_while_wspace
+  imul r9, -1
   jmp ft_atoi_compute_result_while_wspace
 
-ft_atoi_compute_result_final:
+ft_atoi_compute_result_middle:
+  pop rsi                   ; contine to next function
+
+ft_atoi_compute_result_final_loop:
   cmp BYTE [rdi], 0
   je ft_atoi_base_final
   call ft_atoi_check_is_in_string
@@ -146,18 +147,7 @@ ft_atoi_compute_result_final:
   imul r8, rax
   add r8, QWORD [rsp]
   inc rdi
-  jmp ft_atoi_compute_result_final
-
-ft_atoi_compute_result:
-  enter 8, 0
-  xor rcx, rcx
-  push rsi
-  mov rsi, wspace
-  jmp ft_atoi_compute_result_while_wspace
-
-ft_atoi_compute_result_middle:
-  pop rsi
-  jmp ft_atoi_compute_result_final
+  jmp ft_atoi_compute_result_final_loop
 
 ft_atoi_base_final:
   imul r8, r9

@@ -8,8 +8,8 @@
 
 void    ftAtoiBaseTest( void ) {
 
-  char *str = "-23Salut";
-  char *base = "23";
+  char *str = "--8742Salut";
+  char *base = "0123456789";
   char *test = NULL;
   int ret;
 
@@ -70,12 +70,12 @@ void    ftListSizeTest(t_list *begin) {
 
 int     main(void) {
 
-  t_list    *begin = NULL;
+//  t_list    *begin = NULL;
 
-//  ftAtoiBaseTest();
-  begin = ftListPushFrontTest();
-  ftListSizeTest(begin);
-  printList(begin);
+  ftAtoiBaseTest();
+//  begin = ftListPushFrontTest();
+//  ftListSizeTest(begin);
+//  printList(begin);
   return 0;
 
 }
