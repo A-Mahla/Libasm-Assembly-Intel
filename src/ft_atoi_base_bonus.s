@@ -155,7 +155,7 @@ ft_atoi_compute_result:
   mov rsi, wspace
   jmp ft_atoi_compute_result_while_wspace
 
-ft_atoi_compute_result_middle
+ft_atoi_compute_result_middle:
   pop rsi
   jmp ft_atoi_compute_result_final
 
