@@ -12,6 +12,8 @@ void    ftStrlenTest( void ) {
   char *str1 = "Salut";
   printf("%ld\n", ft_strlen(str1));
 
+  char *str2 = "";
+  printf("%ld\n", ft_strlen(str2));
 }
 
 
@@ -28,8 +30,8 @@ void    ftStrcpyTest( void ) {
 
 void    ftStrcmpTest( void ) {
 
-  char  *str1 = "Hellooo";
-  char  *str2 = "Helloooo";
+  char  *str1 = "Helloo";
+  char  *str2 = "Hellooo";
   printf("%d\n", ft_strcmp(str1, str2));
   printf("%d\n", strcmp(str1, str2));
 

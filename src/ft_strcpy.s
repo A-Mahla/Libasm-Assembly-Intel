@@ -7,20 +7,18 @@ ft_strcpy:
   push rbp
   mov rbp, rsp
   mov rax, rdi
-  call ft_strcpy_loop
-  pop rbp
-  ret
-
-ft_strcpy_inc:
-  inc rdi
-  inc rsi
-  jmp ft_strcpy_loop
 
 ft_strcpy_loop:
   mov bl, [rsi]          ; see Note
   mov [rdi], bl
   cmp byte [rdi], 0x0
-  jnz ft_strcpy_inc
+  jz ft_strcpy_ret
+  inc rdi
+  inc rsi
+  jmp ft_strcpy_loop
+
+ft_strcpy_ret
+  pop rbp
   ret
 
 ; Note: in assembly you cannot assign directly an indirect value pointed

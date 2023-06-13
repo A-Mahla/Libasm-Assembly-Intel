@@ -6,31 +6,30 @@ global .text
 ft_strcmp:
   push rbp
   mov rbp, rsp
-  xor rax, rax
-  call ft_strcmp_loop
-  pop rbp
-  ret
+  mov rax, rax
 
 ft_strcmp_loop:
   mov al, byte [rdi]
   cmp al, byte [rsi]
-  jne ft_strcmp_exit
+  jl ft_strcmp_exit_less
+  jg ft_strcmp_exit_greater
   cmp byte [rdi], 0
-  jz ft_strcmp_exit_zero
+  jz ft_strcmp_exit_equal
   inc rdi
   inc rsi
   jmp ft_strcmp_loop
+
+ft_strcmp_exit_less:
+  mov QWORD rax, -1
+  pop rbp
   ret
 
-ft_strcmp_exit_neg:
-  neg rax
+ft_strcmp_exit_greater:
+  mov rax, 1
+  pop rbp
   ret
 
-ft_strcmp_exit:
-  mov al, 1
-  jle ft_strcmp_exit_neg 
-  ret
-
-ft_strcmp_exit_zero:
-  mov al, 0
+ft_strcmp_exit_equal:
+  mov rax, 0
+  pop rbp
   ret
