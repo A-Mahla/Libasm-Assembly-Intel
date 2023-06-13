@@ -6,7 +6,7 @@
 
 🔧 System Requirements:
    - Operating System: Linux 64_X86 Distribution
-   - Software: [nasm](https://nasm.us/), [make](https://www.gnu.org/software/make/), [gcc](https://gcc.gnu.org/), 
+   - Software: [nasm](https://nasm.us/), [make](https://www.gnu.org/software/make/), [clang](https://clang.llvm.org/), 
 
 ## Usage
  
