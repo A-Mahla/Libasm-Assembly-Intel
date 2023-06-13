@@ -6,7 +6,7 @@ extern __errno_location
 
 section .text
 
-ft_strdup:
+ft_strdup:                          ; rdi = char *s1
   push rbp
   mov rbp, rsp
   push rdi                          ; push on the Stack value of 1st arg of ft_strdup to reuse it later

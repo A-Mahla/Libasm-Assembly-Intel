@@ -9,7 +9,7 @@ section .text
 
 ; ========== entrypoint ===============
 
-ft_atoi_base:
+ft_atoi_base:                       ; rdi = char *str, rsi = char *base
   enter 0, 0
   cmp rdi, 0x0
   je ft_atoi_base_error

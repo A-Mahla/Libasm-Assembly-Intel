@@ -3,7 +3,7 @@ global ft_strcpy
 
 global .text
 
-ft_strcpy:
+ft_strcpy:               ; rdi = char *dest, rsi = char *src
   push rbp
   mov rbp, rsp
   mov rax, rdi

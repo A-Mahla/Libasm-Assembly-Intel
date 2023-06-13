@@ -2,7 +2,7 @@ global ft_strlen
 
 section .text
 
-ft_strlen:
+ft_strlen:                ; rdi = char *str
   push rbp
   mov rbp, rsp
   xor rax, rax            ; set rax = 0x0  => continue to next function

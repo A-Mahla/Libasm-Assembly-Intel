@@ -3,7 +3,7 @@ global ft_write
 extern __errno_location
 
 section .text
-ft_write:
+ft_write:                          ; rdi = int fildes, rsi = void *buf, rdx = size_t nbyte
   push rbp
   mov rbp, rsp
   mov rax, 1

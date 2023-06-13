@@ -3,7 +3,7 @@ global ft_read
 extern __errno_location
 
 section .text
-ft_read:
+ft_read:                           ; rdi = int fildes, rsi = void *buf, rdx = size_t nbyte
   push rbp
   mov rbp, rsp
   mov rax, 0

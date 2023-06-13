@@ -3,7 +3,7 @@ global ft_strcmp
 
 global .text
 
-ft_strcmp:
+ft_strcmp:                     ; rdi = char *s1, rsi = char *s2
   push rbp
   mov rbp, rsp
   mov rax, rax
