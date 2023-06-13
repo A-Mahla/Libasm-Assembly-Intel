@@ -6,8 +6,8 @@
 
 void    ftAtoiBaseTest( void ) {
 
-  char *str = "34215Salut";
-  char *base = "0123456789";
+  char *str = "-23Salut";
+  char *base = "23";
   int ret;
 
   ret = ft_atoi_base(str, base);
