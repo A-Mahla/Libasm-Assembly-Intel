@@ -3,7 +3,7 @@ units
 units_bonus
 
 # UnitTest
-./aceunit/
+./aceunit/*
 
 # Prerequisites
 *.d
