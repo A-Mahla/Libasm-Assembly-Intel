@@ -39,6 +39,7 @@ ft_list_sort_swap:
   mov r9, QWORD [rcx]
   mov [rbx], r9
   mov [rcx], r8
+  jmp ft_list_sort_loop_current_end
 
 ft_list_sort_loop_begin_end:
   mov rbx, [rbx+8]

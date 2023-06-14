@@ -68,9 +68,9 @@ void    ftListSizeTest(t_list *begin) {
 
 }
 
-void    ftListSortTest( t_list *begin ) {
+void    ftListSortTest( t_list **begin ) {
 
-  ft_list_sort(&begin, &ft_strcmp);
+  ft_list_sort(begin, &ft_strcmp);
 
 }
 
@@ -80,9 +80,9 @@ int     main(void) {
 
 //  ftAtoiBaseTest();
   begin = ftListPushFrontTest();
-//  ftListSizeTest(begin);
-  ftListSortTest(begin);
-//  printList(begin);
+  ftListSizeTest(begin);
+  ftListSortTest(&begin);
+  printList(begin);
   return 0;
 
 }
