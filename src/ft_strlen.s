@@ -13,6 +13,6 @@ ft_strlen_loop:
   inc rax
   jmp ft_strlen_loop
 
-ft_strlen_ret
+ft_strlen_ret:
   pop rbp
   ret

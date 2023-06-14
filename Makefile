@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2023/06/14 15:18:28 by amahla           ###   ########.fr        #
+#    Updated: 2023/06/14 16:54:45 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,13 @@ UNITSRC 			:= 	units.c
 
 UNITBONUS			:=	$(UNIT)_bonus
 UNITBONUSSRC 		:=	units_bonus.c
+
+# ---
+
+ACEUNIT_HOME		:=	./aceunit
+ACEUNIT_REPO		:=	git@github.com:christianhujer/aceunit.git
+ACEUNIT_LIBRARY		:=	$(ACEUNIT_HOME)/lib/libaceunit-abort.a
+ACE_INCLUDES		:= -I $(ACEUNIT_HOME)/include
 
 # ---
 
@@ -93,10 +100,16 @@ $(BONUS)			:	$(addprefix $(OUTLIBDIR)/,$(LIBBONUSSRC:.s=.o))
 	$(AR) $@ $^
 	ranlib $@
 
-$(UNIT) 			: 	$(LIBASM) $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o))
+$(ACEUNIT_HOME)		:
+	@git clone $(ACEUNIT_REPO) > /dev/null 2>&1
+
+$(ACEUNIT_LIBRARY): $(ACEUNIT_HOME)
+	@$(MAKE) -C $(dir $(ACEUNIT_LIBRARY)) > /dev/null 2>&1
+
+$(UNIT) 			: 	$(ACEUNIT_LIBRARY) $(LIBASM) $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o))
 	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o)) $(LIBFLAGS)
 
-$(UNITBONUS) 		: 	$(LIBBONUS) $(addprefix $(OUTUNITDIR)/,$(UNITBONUSSRC:.c=.o))
+$(UNITBONUS) 		: 	$(ACEUNIT_LIBRARY) $(LIBBONUS) $(addprefix $(OUTUNITDIR)/,$(UNITBONUSSRC:.c=.o))
 	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITBONUSSRC:.c=.o)) $(LIBBONUSFLAGS)
 
 debug 				:
@@ -111,7 +124,7 @@ clean				:
 	$(RM) $(OUTDIR)
 
 fclean				:	clean
-	$(RM) $(NAME) $(LIBBONUS) $(UNIT) $(UNITBONUS)
+	$(RM) $(NAME) $(LIBBONUS) $(UNIT) $(UNITBONUS) $(ACEUNIT_HOME) $(ACEUNIT_LIBRARY)
 
 re					:	fclean
 	$(MAKE) $(NAME)
