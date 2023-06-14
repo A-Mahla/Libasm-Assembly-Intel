@@ -49,15 +49,13 @@ t_list    *ftListPushFrontTest( void ) {
 
 void    printList( t_list *begin ) {
 
-  t_list *tmp;
 
+  printf("\n");
   while (begin) {
-    tmp = begin;
     printf("%s\n", (char *)begin->data);
     begin = begin->next;
-    free(tmp->data);
-    free(tmp);
   }
+  printf("\n");
 
 }
 
@@ -74,15 +72,42 @@ void    ftListSortTest( t_list **begin ) {
 
 }
 
+void    ftListRemoveTest( t_list **begin ) {
+
+	ft_list_remove_if(begin, "Hi from 1 element to be entered in the list !", &ft_strcmp, &free);
+	ft_list_remove_if(begin, "Hi from 10 element to be entered in the list !", &ft_strcmp, &free);
+	ft_list_remove_if(begin, "Hi from 20 element to be entered in the list !", &ft_strcmp, &free);
+	ft_list_remove_if(begin, "Hi from 9 element to be entered in the list !", &ft_strcmp, &free);
+
+}
+
+void	freeList(t_list **begin) {
+
+	t_list *tmp;
+
+	while (*begin) {
+		tmp = *begin;
+		*begin = (*begin)->next;
+		free(tmp->data);
+		free(tmp);
+	}
+
+}
+
+
 int     main(void) {
 
   t_list    *begin = NULL;
 
 //  ftAtoiBaseTest();
   begin = ftListPushFrontTest();
+  printList(begin);
   ftListSizeTest(begin);
   ftListSortTest(&begin);
   printList(begin);
+  ftListRemoveTest(&begin);
+  printList(begin);
+  freeList(&begin);
   return 0;
 
 }

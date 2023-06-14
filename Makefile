@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                        :+:       :+: :+: :+:     #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2023/06/09 20:38:13 by ammah ###       ########     ########     #
+#    Updated: 2023/06/14 15:18:28 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ LIBBONUSSRC			:=	ft_strlen.s 				\
 						ft_atoi_base_bonus.s 		\
 						ft_list_push_front_bonus.s 	\
 						ft_list_size_bonus.s		\
-						ft_list_sort_bonus.s
+						ft_list_sort_bonus.s		\
+						ft_list_remove_if_bonus.s
 
 # ---
 

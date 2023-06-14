@@ -37,4 +37,4 @@ To run the command, open your terminal and follow these steps:
 - [ft_list_push_front](src/ft_list_push_front_bonus.s) - ```void ft_list_push_front(t_list **begin, void data);```
 - [ft_list_size](src/ft_list_size_bonus.s) - ```int ft_list_size(t_list *begin);```
 - [ft_list_sort](src/ft_list_sort_bonus.s) - ```void ft_list_sort(t_list **begin, int (*cmp)());```
-- [ft_list_remove_if](src/ft_list_remove_if_bonus.s) - ```void ft_list_remove_if(t_list **begin, void *data_ref, int (*cmp)(void *,void *), void (*free_fn)(void *));```
+- [ft_list_remove_if](src/ft_list_remove_if_bonus.s) - ```void ft_list_remove_if(t_list **begin, void *data_ref, int (*cmp)(), void (*free_fn)(void *));```

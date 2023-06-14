@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    :::       :::     :::   */
-/*   libasm.h                                        :+:       :+: :+: :+:    */
+/*   libasm.h                                           :+:      :+:    :+:   */
 /*                                                +:+ +:+     +:+  +  +:+     */
 /*   By: ammah <ammah.connect@outlook.fr>       +#+   +:+    +#+     +#+      */
 /*                                            +#+     +#+   +#+     +#+       */
 /*   Created: 2023/06/09 18:23:13 by ammah   #+#      #+#  #+#     #+#        */
-/*   Updated: 2023/06/09 19:28:28 by ammah ###       ########     ########    */
+/*   Updated: 2023/06/14 15:28:24 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_list_push_front(t_list **, void *data);
 int		ft_list_size(t_list *);
 void	ft_list_sort(t_list **, int (*cmp)());
 void	ft_list_remove_if(t_list **, void *data_ref, \
-			int (*cmp)(void *,void *), void (*free_fn)(void *));
+			int (*cmp)(), void (*free_fn)(void *));
 
 
 #endif
