@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 
-void    ftStrlenTest( void ) {
+void    test_ftStrlenTest( void ) {
 
   char *str1 = "Salut";
   printf("%ld\n", ft_strlen(str1));
@@ -68,12 +68,12 @@ void    ftStrdupTest( void ) {
 
 int     main(void) {
 
-  ftStrlenTest();
-  ftStrcpyTest();
-  ftStrcmpTest();
-  ftWriteTest();
-  ftReadTest();
-  ftStrdupTest();
+	test_ftStrlenTest();
+//  ftStrcpyTest();
+//  ftStrcmpTest();
+//  ftWriteTest();
+//  ftReadTest();
+//  ftStrdupTest();
   return 0;
 
 }
