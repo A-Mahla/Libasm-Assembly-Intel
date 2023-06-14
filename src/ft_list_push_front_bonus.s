@@ -9,6 +9,8 @@ ft_list_push_front:             ; rdi = t_list **begin,  rsi = void *data
   enter 0, 0
   cmp rdi, 0x0                  ; check if begin == NULL
   je ft_list_push_front_error
+  cmp rsi, 0x0                  ; check if begin == NULL
+  je ft_list_push_front_error
   push rdi
   push rsi
   mov QWORD rdi, 16             ; sizeof(t_list *)
