@@ -24,7 +24,7 @@ ft_list_remove_if_loop:
   push rcx
   push rdx
   mov rdi, QWORD [r9]
-  call [rsp]
+  call [rsp]							; call int (*cmp)()
   pop rdx
   pop rcx
   pop rsi
@@ -48,7 +48,7 @@ ft_list_remove_if_equal:
   push r9
   push rcx
   mov rdi, QWORD [r9]
-  call [rsp]
+  call [rsp]							; call void (*free_fct)(void *)
 	mov rdi, QWORD [rsp+8]
 	call free
   pop rcx

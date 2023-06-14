@@ -1,4 +1,3 @@
-
 #include "libasm.h"
 #include <stdio.h>
 #include <string.h>
@@ -9,11 +8,26 @@
 
 void    ftStrcpyTest( void ) {
 
-  char dest[20] = {0};
-  char *src = "123";
-  printf("%s\n", ft_strcpy(dest, src));
-  printf("%s\n", dest);
-  printf("%s\n", src);
+	printf("\t========== ft_strcpy tests ===========\n\n");
+
+	char dst[20] = {0};
+
+	printf("\t  ft_strcpy(dst, \"123456789l\")\t=>\t '%s' (dst value)\n", ft_strcpy(dst, "123456789l"));
+	bzero(dst, 20);
+	printf("\t  strcpy(dst, \"123456789l\")\t=>\t '%s' (dst value)\n\n", strcpy(dst, "123456789l"));
+	bzero(dst, 20);
+
+	printf("\t  ft_strcpy(dst, \"\")\t=>\t '%s' (dst value)\n", ft_strcpy(dst, ""));
+	bzero(dst, 20);
+	printf("\t  strcpy(dst, \"\")\t=>\t '%s' (dst value)\n\n", strcpy(dst, ""));
+	bzero(dst, 20);
+
+	printf("\t  ft_strcpy(dst, \"xff\")\t=>\t '%#x' (dst value)\n", ft_strcpy(dst, "\xff")[0]);
+	bzero(dst, 20);
+	printf("\t  strcpy(dst, \"xff\")\t=>\t '%#x' (dst value)\n\n", strcpy(dst, "\xff")[0]);
+	bzero(dst, 20);
+
+	printf("\n\n");
 
 }
 
@@ -61,7 +75,7 @@ void    ftStrdupTest( void ) {
 int     main(void) {
 
 //	ftStrlenTest();
-//	ftStrcpyTest();
+	ftStrcpyTest();
 //	ftStrcmpTest();
 //	ftWriteTest();
 //	ftReadTest();
