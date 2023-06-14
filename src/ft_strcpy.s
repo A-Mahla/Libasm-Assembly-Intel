@@ -9,8 +9,8 @@ ft_strcpy:               ; rdi = char *dest, rsi = char *src
   mov rax, rdi
 
 ft_strcpy_loop:
-  mov bl, [rsi]          ; see Note
-  mov [rdi], bl
+  mov rcx, [rsi]          ; see Note
+  mov [rdi], rcx
   cmp byte [rdi], 0x0
   jz ft_strcpy_ret
   inc rdi

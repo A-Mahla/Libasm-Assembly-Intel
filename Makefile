@@ -6,7 +6,7 @@
 #    By: amahla <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 17:09:53 by amahla            #+#    #+#              #
-#    Updated: 2023/06/14 18:46:29 by amahla           ###   ########.fr        #
+#    Updated: 2023/06/14 19:51:34 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,11 @@ LIBSRC				:=	ft_strlen.s \
 						ft_strcmp.s \
 						ft_write.s  \
 						ft_read.s   \
+						ft_atoi_base_bonus.s 		\
+						ft_list_push_front_bonus.s 	\
+						ft_list_size_bonus.s		\
+						ft_list_sort_bonus.s		\
+						ft_list_remove_if_bonus.s \
 						ft_strdup.s
 
 LIBBONUS			:=	libasm_bonus.a

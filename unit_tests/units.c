@@ -7,20 +7,10 @@
 #include <stdlib.h>
 
 
-void    test_ftStrlenTest( void ) {
-
-  char *str1 = "Salut";
-  printf("%ld\n", ft_strlen(str1));
-
-  char *str2 = "";
-  printf("%ld\n", ft_strlen(str2));
-}
-
-
 void    ftStrcpyTest( void ) {
 
-  char dest[20];
-  char *src = "Hi, what's new !";
+  char dest[20] = {0};
+  char *src = "123";
   printf("%s\n", ft_strcpy(dest, src));
   printf("%s\n", dest);
   printf("%s\n", src);
@@ -30,8 +20,8 @@ void    ftStrcpyTest( void ) {
 
 void    ftStrcmpTest( void ) {
 
-  char  *str1 = "Helloo";
-  char  *str2 = "Hellooo";
+  char  *str1 = "asdklfjasdfj////asdf'''asdf3##";
+  char  *str2 = "";
   printf("%d\n", ft_strcmp(str1, str2));
   printf("%d\n", strcmp(str1, str2));
 
@@ -41,6 +31,8 @@ void    ftStrcmpTest( void ) {
 void    ftWriteTest( void ) {
 
   ft_write(-1, "Salut\n", 6);
+  printf("%d\n", errno);
+  write(-1, "Salut\n", 6);
   printf("%d\n", errno);
 
 }
@@ -68,12 +60,12 @@ void    ftStrdupTest( void ) {
 
 int     main(void) {
 
-	test_ftStrlenTest();
-//  ftStrcpyTest();
-//  ftStrcmpTest();
-//  ftWriteTest();
-//  ftReadTest();
-//  ftStrdupTest();
+//	ftStrlenTest();
+//	ftStrcpyTest();
+//	ftStrcmpTest();
+//	ftWriteTest();
+//	ftReadTest();
+	ftStrdupTest();
   return 0;
 
 }

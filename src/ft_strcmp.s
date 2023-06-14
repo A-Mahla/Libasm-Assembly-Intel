@@ -9,11 +9,11 @@ ft_strcmp:                     ; rdi = char *s1, rsi = char *s2
   mov rax, rax
 
 ft_strcmp_loop:
-  mov al, byte [rdi]
-  cmp al, byte [rsi]
+  mov rax, [rdi]
+  cmp rax, [rsi]
   jl ft_strcmp_exit_less
   jg ft_strcmp_exit_greater
-  cmp byte [rdi], 0
+  cmp QWORD [rdi], 0
   jz ft_strcmp_exit_equal
   inc rdi
   inc rsi

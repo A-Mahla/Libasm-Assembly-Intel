@@ -4,29 +4,29 @@ global ft_list_sort
 section .text
 ft_list_sort:              ; rdi = t_list **begin, rsi = int (*cmp)()
   enter 0, 0
-  mov rbx, QWORD [rdi]     ; rbx = t_list *begin, rcx = t_list *current
+  mov rdx, QWORD [rdi]     ; rdx = t_list *begin, rcx = t_list *current
   cmp rsi, 0
   jz ft_list_sort_ret
 
 ft_list_sort_loop_begin:
-  cmp rbx, 0
+  cmp rdx, 0
   jz ft_list_sort_ret
-  mov rcx, [rbx+8]
+  mov rcx, [rdx+8]
 
 ft_list_sort_loop_current:
   cmp rcx, 0x0
   jz ft_list_sort_loop_begin_end
-  push rbx
+  push rdx
   push rcx
   push rdi
   push rsi
-  mov rdi, [rbx]
+  mov rdi, [rdx]
   mov rsi, [rcx]
   call [rsp]            ; strcmp => rdi = elem, rsi = next
   pop rsi
   pop rdi
   pop rcx
-  pop rbx
+  pop rdx
   cmp rax, 0            ; if return strcmp > 0
   jg ft_list_sort_swap  ; jump handle sort
 
@@ -35,14 +35,14 @@ ft_list_sort_loop_current_end:
   jmp ft_list_sort_loop_current
 
 ft_list_sort_swap:
-  mov r8, QWORD [rbx]
+  mov r8, QWORD [rdx]
   mov r9, QWORD [rcx]
-  mov [rbx], r9
+  mov [rdx], r9
   mov [rcx], r8
   jmp ft_list_sort_loop_current_end
 
 ft_list_sort_loop_begin_end:
-  mov rbx, [rbx+8]
+  mov rdx, [rdx+8]
   jmp ft_list_sort_loop_begin
 
 ft_list_sort_ret:

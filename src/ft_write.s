@@ -10,9 +10,11 @@ ft_write:                          ; rdi = int fildes, rsi = void *buf, rdx = si
   syscall
   test rax, rax
   jge ft_write_success
-  mov rbx, rax                     ; stock return value of write syscall in rbx
+	neg rax                          ; get the positive value of write return
+  mov rcx, rax                     ; stock return value of write syscall in rbx
   call __errno_location WRT ..plt  ; calling to return pointer to errno location in rax
-  mov [rax], rbx                   ; set errno with write syscall return value
+  mov [rax], rcx                   ; set errno with write syscall return value
+	mov QWORD rax, -1
   pop rbp
   ret
 
