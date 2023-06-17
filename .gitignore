@@ -6,10 +6,10 @@ units_bonus
 CUnit/
 
 # Prerequisites
-*.d
+#*.d
 
 # Object files
-*.o
+#*.o
 *.ko
 *.obj
 *.elf
