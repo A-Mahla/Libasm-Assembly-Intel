@@ -112,14 +112,11 @@ endif
 gdb					: $(UNIT)
 	gdb -q $(UNIT)
 
-#clean				:
-#	$(RM) $(OUTDIR)
+clean				:
+	$(RM) $(OUTDIR)
 
-#fclean				:	clean
-#	$(RM) $(NAME) $(LIBBONUS) $(UNIT) $(UNITBONUS)
-
-fclean				:
-	$(RM) $(UNIT) $(UNITBONUS)
+fclean				:	clean
+	$(RM) $(NAME) $(LIBBONUS) $(UNIT) $(UNITBONUS)
 
 re					:	fclean
 	$(MAKE) $(NAME)
