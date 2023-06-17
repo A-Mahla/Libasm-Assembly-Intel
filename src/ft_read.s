@@ -10,11 +10,11 @@ ft_read:                           ; rdi = int fildes, rsi = void *buf, rdx = si
   syscall
   test rax, rax
   jge ft_read_success
-	neg rax                          ; get the positive value of read return
+  neg rax                          ; get the positive value of read return
   mov rcx, rax                     ; stock return value of read syscall in rbx
-  call __errno_location WRT ..plt  ; calling to return pointer to errno location in rax
+  call __errno_location            ; calling to return pointer to errno location in rax
   mov [rax], rcx                   ; set errno with read syscall return value
-	mov QWORD rax, -1
+  mov QWORD rax, -1
   pop rbp
   ret
 

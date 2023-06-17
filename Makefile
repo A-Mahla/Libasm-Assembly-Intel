@@ -99,7 +99,7 @@ $(BONUS)			:	$(addprefix $(OUTLIBDIR)/,$(LIBBONUSSRC:.s=.o))
 	ranlib $@
 
 $(UNIT) 			: 	$(LIBASM) $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o))
-	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o)) $(LIBFLAGS) $(ACELIB_FLAGS)
+	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o)) $(LIBFLAGS)
 
 $(UNITBONUS) 		: 	$(LIBBONUS) $(addprefix $(OUTUNITDIR)/,$(UNITBONUSSRC:.c=.o))
 	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITBONUSSRC:.c=.o)) $(LIBBONUSFLAGS)
@@ -112,11 +112,14 @@ endif
 gdb					: $(UNIT)
 	gdb -q $(UNIT)
 
-clean				:
-	$(RM) $(OUTDIR)
+#clean				:
+#	$(RM) $(OUTDIR)
 
-fclean				:	clean
-	$(RM) $(NAME) $(LIBBONUS) $(UNIT) $(UNITBONUS)
+#fclean				:	clean
+#	$(RM) $(NAME) $(LIBBONUS) $(UNIT) $(UNITBONUS)
+
+fclean				:
+	$(RM) $(UNIT) $(UNITBONUS)
 
 re					:	fclean
 	$(MAKE) $(NAME)

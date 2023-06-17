@@ -12,7 +12,7 @@ ft_list_push_front:             ; rdi = t_list **begin,  rsi = void *data
   push rdi
   push rsi
   mov QWORD rdi, 16             ; sizeof(t_list *)
-  call malloc WRT ..plt
+  call malloc
   pop rsi
   pop rdi
   cmp rax, 0x0                  ; if malloc failed
@@ -30,7 +30,7 @@ ft_list_push_front_error:
 
 ft_create_elem_error:
   mov rcx, 12
-  call __errno_location WRT ..plt
+  call __errno_location
   mov [rax], rcx
   leave
   ret
