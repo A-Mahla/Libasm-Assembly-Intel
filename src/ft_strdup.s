@@ -16,8 +16,8 @@ ft_strdup:                          ; rdi = char *s1
   call malloc
   cmp rax, 0x0                      ; check if return pointer by malloc is NULL
   jz ft_strdup_null
-  mov rdi, rax                      ; move return of malloc in 2nd argument of ft_strcpy
-  pop rsi                           ; pop value from the Stack of 1st arg of strdup in 1st arg of ft_strcpy
+  mov rdi, rax                      ; move return of malloc in 1st argument of ft_strcpy
+  pop rsi                           ; pop value from the Stack of 1st arg of strdup in 2nd arg of ft_strcpy
   call ft_strcpy
   pop rbp
   ret

@@ -6,11 +6,11 @@ global .text
 ft_strcmp:                     ; rdi = char *s1, rsi = char *s2
   push rbp
   mov rbp, rsp
-  mov rax, rax
+  xor rax, rax
 
 ft_strcmp_loop:
-  mov rax, [rdi]
-  cmp rax, [rsi]
+  mov cl, [rdi]
+  cmp cl, [rsi]
   jl ft_strcmp_exit_less
   jg ft_strcmp_exit_greater
   cmp QWORD [rdi], 0

@@ -53,7 +53,7 @@ ft_atoi_check_is_in_string:
   mov r10b, BYTE [rdi]           ; continue to next function
 
 ft_atoi_check_is_in_string_loop:
-  mov rax, [rsp]
+  mov rax, QWORD [rsp]
   cmp BYTE [rsi+rax], 0
   jz ft_atoi_is_in_string_exit_nofind
   cmp r10b, BYTE [rsi+rax]

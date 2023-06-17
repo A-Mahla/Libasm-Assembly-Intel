@@ -8,16 +8,28 @@
 
 void    ftStrlenTest( void ) {
 
-	printf("\t========== ft_strcpy tests ===========\n\n");
+	printf("\t========== ft_strlen tests ===========\n\n");
 
-	printf("\t  ft_strlen(\"123456789l\")\t=>\t '%zu' (return value)\n", ft_strlen("123456789l"));
-	printf("\t  strlen(\"123456789l\")\t\t=>\t '%zu' (return value)\n\n", strlen("123456789l"));
+	printf(
+        "\t  ft_strlen(\"123456789l\")\t=>\t '%zu' (return value)\n",
+        ft_strlen("123456789l")
+    );
+	printf(
+        "\t  strlen(\"123456789l\")\t\t=>\t '%zu' (return value)\n\n",
+        strlen("123456789l")
+    );
 
 	printf("\t  ft_strlen(\"\")\t\t\t=>\t '%zu' (return value)\n", ft_strlen(""));
 	printf("\t  strlen(\"\")\t\t\t=>\t '%zu' (return value)\n\n", strlen(""));
 
-	printf("\t  ft_strlen(\"\\xff\\xff\\xff\\xff\")\t=>\t '%zu' (return value)\n", ft_strlen("\xff\xff\xff\xff"));
-	printf("\t  strlen(\"\\xff\\xff\\xff\\xff\")\t=>\t '%zu' (return value)\n\n", strlen("\xff\xff\xff\xff"));
+	printf(
+        "\t  ft_strlen(\"\\xff\\xff\\xff\\xff\")\t=>\t '%zu' (return value)\n",
+        ft_strlen("\xff\xff\xff\xff")
+    );
+	printf(
+        "\t  strlen(\"\\xff\\xff\\xff\\xff\")\t=>\t '%zu' (return value)\n\n",
+        strlen("\xff\xff\xff\xff")
+    );
 
 	printf("\n\n");
 }
@@ -78,7 +90,7 @@ void    ftStrcpyTest( void ) {
 
 void    ftStrcmpTest( void ) {
 
-	printf("\t========== ft_strcpy tests ===========\n\n");
+	printf("\t========== ft_strcmp tests ===========\n\n");
 
 	printf("\t  ft_strcmp(\"\", \"\")\t=>\t '%d' (return value)\n", ft_strcmp("", ""));
 	printf("\t  strcmp(\"\", \"\")\t=>\t '%d' (return value)\n\n", strcmp("", ""));
@@ -128,16 +140,19 @@ void    ftStrcmpTest( void ) {
         strcmp("Hello World", "Hello World")
     );
 
-
 }
 
 
 void    ftWriteTest( void ) {
 
-  ft_write(-1, "Salut\n", 6);
-  printf("%d\n", errno);
-  write(-1, "Salut\n", 6);
-  printf("%d\n", errno);
+
+	printf("\t========== ft_write tests ===========\n\n");
+
+	printf(
+        "$\t\t=> ft_write(\"\\t  Salut  \") /\t'%zu' (return value) /\tERRNO = %d\n",
+        ft_write(1, "\t  Salut  ",10),
+        errno
+    );
 
 }
 
@@ -167,7 +182,7 @@ int     main(void) {
 	ftStrlenTest();
 	ftStrcpyTest();
 	ftStrcmpTest();
-//	ftWriteTest();
+	ftWriteTest();
 //	ftReadTest();
 	ftStrdupTest();
   return 0;
