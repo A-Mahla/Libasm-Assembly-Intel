@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
 
 
 void    ftStrlenTest( void ) {
@@ -70,14 +71,14 @@ void    ftStrcpyTest( void ) {
 	bzero(dst, 20);
 
 	printf(
-        "\t  ft_strcpy(dst, \"xff\")\t\t=>\t '%#x' (return value) / '%#x' (dst value)\n",
+        "\t  ft_strcpy(dst, \"\\xff\")\t\t=>\t '%#x' (return value) / '%#x' (dst value)\n",
         ft_strcpy(dst, "\xff")[0]
         ,dst[0]
     );
 	bzero(dst, 20);
 
 	printf(
-        "\t  strcpy(dst, \"xff\")\t\t=>\t '%#x' (return value) / '%#x' (dst value)\n\n",
+        "\t  strcpy(dst, \"\\xff\")\t\t=>\t '%#x' (return value) / '%#x' (dst value)\n\n",
         strcpy(dst, "\xff")[0],
         dst[0]
     );
@@ -143,14 +144,143 @@ void    ftStrcmpTest( void ) {
 }
 
 
+void    ftStrdupTest( void ) {
+
+    printf("\t========== ft_strdup tests ===========\n\n");
+
+	char *dst;
+
+	printf(
+        "\t  ft_strdup(\"123456789l\")\t=>\t '%s' (return value)\n",
+        (dst = ft_strdup("123456789l"))
+    );
+	free(dst);
+	printf(
+        "\t  strdup(\"123456789l\")\t\t=>\t '%s' (return value)\n\n",
+        (dst = strdup("123456789l"))
+    );
+	free(dst);
+
+	printf(
+        "\t  ft_strdup(\"\")\t\t\t=>\t '%s' (return value)\n",
+        (dst = ft_strdup(""))
+    );
+	free(dst);
+	printf(
+        "\t  strdup(\"\")\t\t\t=>\t '%s' (return value)\n\n",
+        (dst = strdup(""))
+    );
+	free(dst);
+
+	printf(
+        "\t  ft_strdup(\"\\xff\")\t\t=>\t '%#x' (return value)\n",
+        (dst = ft_strdup("\xff"))[0]
+    );
+	free(dst);
+	printf(
+        "\t  strdup(\"\\xff\")\t\t=>\t '%#x' (return value)\n\n",
+        (dst = strdup("\xff"))[0]
+    );
+	free(dst);
+
+	printf("\n\n");
+
+}
+
+
 void    ftWriteTest( void ) {
 
 
 	printf("\t========== ft_write tests ===========\n\n");
 
+    write(1, "\t  \"", 4);
 	printf(
-        "$\t\t=> ft_write(\"\\t  Salut  \") /\t'%zu' (return value) /\tERRNO = %d\n",
-        ft_write(1, "\t  Salut  ",10),
+        "\"\t=> ft_write(1, \"Salut  \", 7)\t/  '%ld' (return value)\t/  ERRNO = %d\n",
+        ft_write(1, "Salut  ",7),
+        errno
+    );
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t=> write(1, \"Salut  \", 7)\t/  '%ld' (return value)\t/  ERRNO = %d\n\n",
+        write(1, "Salut  ",7),
+        errno
+    );
+
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t\t=> ft_write(2, \"Salut  \", 3)\t/  '%ld' (return value)\t/  ERRNO = %d\n",
+        ft_write(2, "Salut  ", 3),
+        errno
+    );
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t\t=> write(2, \"Salut  \", 3)\t/  '%ld' (return value)\t/  ERRNO = %d\n\n",
+        write(2, "Salut  ", 3),
+        errno
+    );
+
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t=> ft_write(2, \"Salut  \", 8)\t/  '%ld' (return value)\t/  ERRNO = %d\n",
+        ft_write(2, "Salut  ", 8),
+        errno
+    );
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t=> write(2, \"Salut  \", 8)\t/  '%ld' (return value)\t/  ERRNO = %d\n\n",
+        write(2, "Salut  ", 8),
+        errno
+    );
+
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t\t=> ft_write(2, \"Salut  \", 0)\t/  '%ld' (return value)\t/  ERRNO = %d\n",
+        ft_write(2, "Salut  ", 0),
+        errno
+    );
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t\t=> write(2, \"Salut  \", 0)\t/  '%ld' (return value)\t/  ERRNO = %d\n\n",
+        write(2, "Salut  ", 0),
+        errno
+    );
+
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t\t=> ft_write(1, \"Salut  \", -1)\t/  '%ld' (return value)\t/  ERRNO = %d\n",
+        ft_write(1, "Salut  ", -1),
+        errno
+    );
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t\t=> write(1, \"Salut  \", -1)\t/  '%ld' (return value)\t/  ERRNO = %d\n\n",
+        write(1, "Salut  ", -1),
+        errno
+    );
+
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t\t=> ft_write(-1, \"Salut  \", 7)\t/  '%ld' (return value)\t/  ERRNO = %d\n",
+        ft_write(-1, "Salut  ",7),
+        errno
+    );
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t\t=> write(-1, \"Salut  \", 7)\t/  '%ld' (return value)\t/  ERRNO = %d\n\n",
+        write(-1, "Salut  ",7),
+        errno
+    );
+
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t\t=> ft_write(2, NULL, 7)\t/  '%ld' (return value)\t/  ERRNO = %d\n",
+        ft_write(2, NULL,7),
+        errno
+    );
+    write(1, "\t  \"", 4);
+	printf(
+        "\"\t\t=> write(2, NULL, 7)\t/  '%ld' (return value)\t/  ERRNO = %d\n\n",
+        write(2, NULL,7),
         errno
     );
 
@@ -159,32 +289,122 @@ void    ftWriteTest( void ) {
 
 void    ftReadTest( void ) {
 
-  char buf[10];
-  ft_read(0, buf, 9);
-  printf("%d\n", errno);
+    char buf[10];
+    int fd = open("Makefile", O_RDONLY);
+    read(fd, buf, 2);
+    errno = 0;
 
-}
+    printf("\t========== ft_read tests ===========\n\n");
 
 
-void    ftStrdupTest( void ) {
+    buf[7] = '\0';
+	printf(
+        "\t  ft_read(fd, buf, 7)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n",
+        ft_read(fd, buf,7),
+        buf,
+        errno
+    );
+	printf(
+        "\t  read(fd, buf, 7)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n\n",
+        read(fd, buf,7),
+        buf,
+        errno
+    );
 
-  char  *str = "Salut";
+    buf[3] = '\0';
+	printf(
+        "\t  ft_read(fd, buf, 3)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n",
+        ft_read(fd, buf, 3),
+        buf,
+        errno
+    );
+	printf(
+        "\t  read(fd, buf, 3)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n\n",
+        read(fd, buf, 3),
+        buf,
+        errno
+    );
 
-  char *ret = ft_strdup(str);
-  printf("%s\n", ret);
-  free(ret);
+    buf[8] = '\0';
+	printf(
+        "\t  ft_read(fd, buf, 8)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n",
+        ft_read(fd, buf, 8),
+        buf,
+        errno
+    );
+	printf(
+        "\t  read(fd, buf, 8)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n\n",
+        read(fd, buf, 8),
+        buf,
+        errno
+    );
+
+    buf[0] = '\0';
+	printf(
+        "\t  ft_read(fd, buf, 0)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n",
+        ft_read(fd, buf, 0),
+        buf,
+        errno
+    );
+	printf(
+        "\t  read(fd, buf, 0)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n\n",
+        read(fd, buf, 0),
+        buf,
+        errno
+    );
+
+	printf(
+        "\t  ft_read(fd, buf, -1)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n",
+        ft_read(fd, buf, -1),
+        buf,
+        errno
+    );
+	printf(
+        "\t  read(fd, buf, -1)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n\n",
+        read(fd, buf, -1),
+        buf,
+        errno
+    );
+
+	printf(
+        "\t  ft_read(-1, buf, 7)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n",
+        ft_read(-1, buf,7),
+        buf,
+        errno
+    );
+	printf(
+        "\t  read(-1, buf, 7)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n\n",
+        read(-1, buf,7),
+        buf,
+        errno
+    );
+
+	printf(
+        "\t  ft_read(fd, NULL, 7)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n",
+        ft_read(fd, NULL,7),
+        buf,
+        errno
+    );
+	printf(
+        "\t  read(fd, NULL, 7)\t/  '%ld' (return value)\t/  '%s' (buf value)\t/  ERRNO = %d\n\n",
+        read(fd, NULL,7),
+        buf,
+        errno
+    );
 
 }
 
 
 int     main(void) {
 
+    printf("\n");
+
 	ftStrlenTest();
 	ftStrcpyTest();
 	ftStrcmpTest();
-	ftWriteTest();
-//	ftReadTest();
 	ftStrdupTest();
+	ftWriteTest();
+	ftReadTest();
   return 0;
 
 }
