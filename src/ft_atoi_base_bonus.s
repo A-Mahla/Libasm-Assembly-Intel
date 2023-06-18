@@ -46,11 +46,11 @@ ft_atoi_base_success:
 
 ; =========== is in string (white-space / base) ==========
 
-ft_atoi_check_is_in_string:
+ft_atoi_check_is_in_string:      ; rdi = char *string_to_check, rsi = char *white-space / *base
   enter 8, 0
   xor rax, rax
   mov QWORD [rsp], 0
-  mov r10b, BYTE [rdi]           ; continue to next function
+  mov r10b, BYTE [rdi]           ; extract first character of rdi (string_to_check)
 
 ft_atoi_check_is_in_string_loop:
   mov rax, [rsp]
@@ -72,7 +72,7 @@ ft_atoi_is_in_string_exit_nofind:
 
 ; =============== Atoi check base =============
 
-ft_atoi_check_base:
+ft_atoi_check_base:             ; rdi = char *base, rsi = char *wspace 
   enter 8, 0
   push rdi
   call ft_strlen
@@ -112,10 +112,10 @@ ft_atoi_check_base_syntax_unique_loop:
 
 ; =========== Compute result =============
 
-ft_atoi_compute_result:
+ft_atoi_compute_result:   ; rdi = char *str, rsi = char *base
   enter 8, 0
   push rsi
-  mov rsi, wspace        ; continue to next function
+  mov rsi, wspace         ; continue to next function
 
 ft_atoi_compute_result_while_wspace:
   cmp BYTE [rdi], 0
