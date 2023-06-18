@@ -22,7 +22,7 @@ ft_list_sort_loop_current:
   push rsi
   mov rdi, [rdx]
   mov rsi, [rcx]
-  call [rsp]                     ; int (*cmp)() => rdi = begin->data, rsi = current->data
+  call [rsp]                     ; call int (*cmp)() => rdi = begin->data, rsi = current->data
   pop rsi
   pop rdi
   pop rcx
