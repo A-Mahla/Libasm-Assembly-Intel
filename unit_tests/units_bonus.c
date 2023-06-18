@@ -151,7 +151,7 @@ void    ftListRemoveTest( t_list **begin ) {
 
   printf("\t============ End Linked List Functions Testing =============\n\n");
   printf("\t*** be free to use these functions with your tests !\n");
-  printf("\t***  Compiling usage:\n\t***    clang -o a.out *.o -L /path/to/libasm.a/ -lasm\n\n");
+  printf("\t***  Compile usage:\n\t***    clang -o a.out *.o -L /path/to/libasm.a/ -lasm\n\n");
 
   freeList(begin);
 
