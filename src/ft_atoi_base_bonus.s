@@ -81,7 +81,7 @@ ft_atoi_check_base:             ; rdi = char *base, rsi = char *wspace
   jle ft_atoi_base_error
   xor rax, rax
   xor rcx, rcx
-  mov QWORD [rsp], rdi           ; continue to next function
+  mov QWORD [rsp], rdi          ; continue to next function
 
 ft_atoi_check_base_syntax_wspace_loop:
   mov r10b, BYTE [rdi]
