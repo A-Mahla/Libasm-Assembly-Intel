@@ -48,7 +48,7 @@ ft_list_remove_if_equal:                        ; if int (*cmp)() == 0
   push r9
   push rcx
   mov rdi, QWORD [r9]
-  call [rsp]				                            ; call void (*free_fct)(void *) => rdi = elem->data
+  call [rsp]                                    ; call void (*free_fct)(void *) => rdi = elem->data
   mov rdi, QWORD [rsp+8]
   call free                                     ; call free => rdi = elem->data (rsp+8 == r9)
   pop rcx
