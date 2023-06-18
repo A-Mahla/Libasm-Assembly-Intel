@@ -4,7 +4,7 @@ extern free
 
 section .text
 ft_list_remove_if:				; rdi = t_list **begin, rsi = void *data_ref, rdx = int (*cmp)(), rcx = void (*free_fct)(void *)
-  enter 0, 0					; r8 = t_list *prev, r9 = t_list *elem, r10 = t_list *next
+  enter 0, 0					    ; r8 = t_list *prev, r9 = t_list *elem, r10 = t_list *next
   cmp rdx, 0x0
   je ft_list_remove_if_ret
   cmp rcx, 0x0
@@ -24,7 +24,7 @@ ft_list_remove_if_loop:
   push rcx
   push rdx
   mov rdi, QWORD [r9]
-  call [rsp]		     		        ; call int (*cmp)() => rdi = elem->data, rsi = data_ref
+  call [rsp]		     		                        ; call int (*cmp)() => rdi = elem->data, rsi = data_ref
   pop rdx
   pop rcx
   pop rsi
