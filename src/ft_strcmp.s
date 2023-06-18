@@ -13,7 +13,7 @@ ft_strcmp_loop:
   cmp cl, [rsi]
   jl ft_strcmp_exit_less
   jg ft_strcmp_exit_greater
-  cmp QWORD [rdi], 0
+  cmp cl, 0
   jz ft_strcmp_exit_equal
   inc rdi
   inc rsi
