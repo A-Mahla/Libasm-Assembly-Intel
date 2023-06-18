@@ -11,7 +11,7 @@ ft_strcpy:               ; rdi = char *dest, rsi = char *src
 ft_strcpy_loop:
   mov cl, BYTE [rsi]          ; see Note
   mov BYTE [rdi], cl
-  cmp byte [rdi], 0x0
+  cmp BYTE [rdi], 0x0
   jz ft_strcpy_ret
   inc rdi
   inc rsi
