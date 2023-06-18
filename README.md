@@ -21,7 +21,8 @@ To run the command, open your terminal and follow these steps:
   - To compile with ```libasm.a```:
   
       ```shell
-      clang -o a.out *.o -I /path/to/project/directory/include -L /path/to/project/directory/include -lasm
+      (cd /path/to/project/directory && make)
+      clang -o a.out *.o -I /path/to/project/directory/include -L /path/to/project/directory -lasm
       ```
       
    - To run Units Tests:
