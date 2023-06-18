@@ -15,7 +15,7 @@ To run the command, open your terminal and follow these steps:
   - To create ```libasm.a```:
   
       ```shell
-      cd /path/to/project/directory && make
+      (cd /path/to/project/directory && make)
       ```
 
   - To compile with ```libasm.a```:
@@ -28,7 +28,7 @@ To run the command, open your terminal and follow these steps:
    - To run Units Tests:
 
       ```shell
-      cd /path/to/project/directory && make units && ./units
+      (cd /path/to/project/directory && make units && ./units)
       ```
 
 
