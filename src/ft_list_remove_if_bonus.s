@@ -24,7 +24,7 @@ ft_list_remove_if_loop:
   push rcx
   push rdx
   mov rdi, QWORD [r9]
-  call [rsp]		     		                        ; call int (*cmp)() => rdi = elem->data, rsi = data_ref
+  call [rsp]                                    ; call int (*cmp)() => rdi = elem->data, rsi = data_ref
   pop rdx
   pop rcx
   pop rsi
