@@ -17,6 +17,12 @@ To run the command, open your terminal and follow these steps:
       ```shell
       cd /path/to/project/directory && make
       ```
+
+  - To compile with ```libasm.a```:
+  
+      ```shell
+      clang -o a.out *.o -L /path/to/libasm.a/ -lasm
+      ```
       
    - To run Units Tests:
 
@@ -33,8 +39,8 @@ To run the command, open your terminal and follow these steps:
 - [ft_write](src/ft_write.s) - *man 2 write*
 - [ft_read](src/ft_read.s) - *man 2 read*
 - [ft_strdup](src/ft_strdup.s) - *man 3 strdup*
-- [ft_atoi_base](src/ft_atoi_base_bonus.s) - ```int ft_atoi_base(char *str, char *base);```
-- [ft_list_push_front](src/ft_list_push_front_bonus.s) - ```void ft_list_push_front(t_list **begin, void data);```
-- [ft_list_size](src/ft_list_size_bonus.s) - ```int ft_list_size(t_list *begin);```
-- [ft_list_sort](src/ft_list_sort_bonus.s) - ```void ft_list_sort(t_list **begin, int (*cmp)());```
-- [ft_list_remove_if](src/ft_list_remove_if_bonus.s) - ```void ft_list_remove_if(t_list **begin, void *data_ref, int (*cmp)(), void (*free_fct)(void *));```
+- [ft_atoi_base](src/ft_atoi_base.s) - ```int ft_atoi_base(char *str, char *base);```
+- [ft_list_push_front](src/ft_list_push_front.s) - ```void ft_list_push_front(t_list **begin, void data);```
+- [ft_list_size](src/ft_list_size.s) - ```int ft_list_size(t_list *begin);```
+- [ft_list_sort](src/ft_list_sort.s) - ```void ft_list_sort(t_list **begin, int (*cmp)());```
+- [ft_list_remove_if](src/ft_list_remove_if.s) - ```void ft_list_remove_if(t_list **begin, void *data_ref, int (*cmp)(), void (*free_fct)(void *));```

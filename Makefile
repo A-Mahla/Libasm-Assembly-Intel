@@ -21,33 +21,21 @@ LIBSRC				:=	ft_strlen.s \
 						ft_strcmp.s \
 						ft_write.s  \
 						ft_read.s   \
-						ft_atoi_base_bonus.s 		\
-						ft_list_push_front_bonus.s 	\
-						ft_list_size_bonus.s		\
-						ft_list_sort_bonus.s		\
-						ft_list_remove_if_bonus.s \
-						ft_strdup.s
-
-LIBBONUS			:=	libasm_bonus.a
-LIBBONUSSRC			:=	ft_strlen.s 				\
-						ft_strcmp.s 				\
-						ft_atoi_base_bonus.s 		\
-						ft_list_push_front_bonus.s 	\
-						ft_list_size_bonus.s		\
-						ft_list_sort_bonus.s		\
-						ft_list_remove_if_bonus.s
+						ft_strdup.s \
+						ft_atoi_base.s 		\
+						ft_list_push_front.s 	\
+						ft_list_size.s		\
+						ft_list_sort.s		\
+						ft_list_remove_if.s
 
 # ---
 
-UNITSRCDIR			:=	unit_tests
+UNITSRCDIR			:=	src
 UNITOBJDIR 			:= 	units
 INCLUDEDIR			:=	-I ./include
 
 UNIT				:=	units
 UNITSRC 			:= 	units.c
-
-UNITBONUS			:=	$(UNIT)_bonus
-UNITBONUSSRC 		:=	units_bonus.c
 
 # ---
 
@@ -59,11 +47,9 @@ RM					:=	rm -rf
 NASMFLAGS			:=	-f elf64
 CCFLAGS				:=	-Wall -Wextra -Werror
 LIBFLAGS			:= -L . -lasm
-LIBBONUSFLAGS		:= -L . -lasm_bonus
 OPTFLAG				:=
 
 NAME				:=	$(LIBASM)
-BONUS				:=	$(LIBBONUS)
 
 OUTDIR 				:= ./obj
 OUTLIBDIR			:= $(addprefix $(OUTDIR)/, $(LIBSRCDIR))
@@ -80,7 +66,6 @@ endif
 
 all 				: 	$(NAME)
 
-bonus				:	$(BONUS)
 
 $(OUTLIBDIR)/%.o	:	$(LIBSRCDIR)/%.s
 	@mkdir -p $(dir $@)
@@ -94,15 +79,8 @@ $(NAME)				:	$(addprefix $(OUTLIBDIR)/,$(LIBSRC:.s=.o))
 	$(AR) $@ $^
 	ranlib $@
 
-$(BONUS)			:	$(addprefix $(OUTLIBDIR)/,$(LIBBONUSSRC:.s=.o))
-	$(AR) $@ $^
-	ranlib $@
-
 $(UNIT) 			: 	$(LIBASM) $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o))
 	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.o)) $(LIBFLAGS)
-
-$(UNITBONUS) 		: 	$(LIBBONUS) $(addprefix $(OUTUNITDIR)/,$(UNITBONUSSRC:.c=.o))
-	$(CC) $(OPTFLAG) -o $@ $(addprefix $(OUTUNITDIR)/,$(UNITBONUSSRC:.c=.o)) $(LIBBONUSFLAGS)
 
 debug 				:
 ifndef DEBUG
@@ -116,11 +94,9 @@ clean				:
 	$(RM) $(OUTDIR)
 
 fclean				:	clean
-	$(RM) $(NAME) $(LIBBONUS) $(UNIT) $(UNITBONUS)
+	$(RM) $(NAME) $(UNIT)
 
 re					:	fclean
 	$(MAKE) $(NAME)
 
-.PHONY				:	all bonus clean fclean re debug gdb
-
--include	$(addprefix $(OUTUNITDIR)/,$(UNITSRC:.c=.d))
+.PHONY				:	all clean fclean re debug gdb
