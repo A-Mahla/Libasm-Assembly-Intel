@@ -8,15 +8,45 @@
 
 void    ftAtoiBaseTest( void ) {
 
-  char *str = "\t\n\r\v\f\r 4";
-  char *base = "01234";
-  char *test = NULL;
-  int ret;
+  	printf("\t========== ft_atoi_base tests ===========\n\n");
 
-  ret = ft_atoi_base(str, base);
-  printf("%d\n", ret);
-//  ret = ft_atoi_base(test, base);
-  ret = ft_atoi_base(str, test);
+//	printf(
+//        "\t  ft_atoi_base(\"\", \"\")\t=>\t '%d' (return value)\n",
+//        ft_atoi_base("", "")
+//    );
+//
+	printf(
+        "\t  ft_atoi_base(\"123\", \"0123456789\")\t=>\t '%d' (return value)\n",
+        ft_atoi_base("123", "0123456789")
+    );
+
+	printf(
+        "\t  ft_atoi_base(\"ffe0\", \"0123456789abcdef\")\t=>\t '%d' (return value)\n",
+        ft_atoi_base("ffe0", "0123456789abcdef")
+    );
+
+	printf(
+        "\t  ft_atoi_base(\"\\t\\n\\r\\v\\f\\r 4\", \"01234\")\t=>\t '%d' (return value)\n",
+        ft_atoi_base("\t\n\r\v\f\r 4", "01234")
+    );
+
+	printf(
+        "\t  ft_atoi_base(\"-+\\r++-+--ff\xff\", \"0123456789abcdef\")\t=>\t '%d' (return value)\n",
+        ft_atoi_base("-+\r++-+--ff\xff", "0123456789abcdef")
+    );
+
+	printf(
+        "\t  ft_atoi_base(\"ffffffff\", \"0123456789abcdef\")\t=>\t '%d' (return value)\n",
+        ft_atoi_base("ffffffff", "0123456789abcdef")
+    );
+
+    char *str = "\t\n\r\v\f\r 4";
+    char *base = "01234";
+    int ret;
+
+    ret = ft_atoi_base(str, base);
+    printf("%d\n", ret);
+
 
 }
 
