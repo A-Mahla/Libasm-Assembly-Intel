@@ -33,7 +33,7 @@ void	ft_list_push_front(t_list **, void *data);
 int		ft_list_size(t_list *);
 void	ft_list_sort(t_list **, int (*cmp)());
 void	ft_list_remove_if(t_list **, void *data_ref, \
-			int (*cmp)(), void (*free_fn)(void *));
+			int (*cmp)(), void (*free_fct)(void *));
 
 
 #endif

@@ -80,6 +80,7 @@ ft_atoi_check_base:
   cmp rax, 1
   jle ft_atoi_base_error
   xor rax, rax
+  xor rcx, rcx
   mov QWORD [rsp], rdi           ; continue to next function
 
 ft_atoi_check_base_syntax_wspace_loop:
@@ -94,19 +95,18 @@ ft_atoi_check_base_syntax_wspace_loop:
 
 ft_atoi_check_base_middle:
   mov rdi, QWORD [rsp]
-  mov QWORD rcx, 1               ; continue to next function
 
 ft_atoi_check_base_syntax_unique_loop:
   mov r10b, BYTE [rdi]
   cmp r10b, 0
   jz ft_atoi_base_success
+  inc rcx
   mov dl, BYTE [rdi+rcx]
   cmp r10b, dl
   je ft_atoi_base_error
-  inc rcx
   cmp BYTE [rdi+rcx], 0
   jne ft_atoi_check_base_syntax_unique_loop
-  mov QWORD rcx, 1
+  mov QWORD rcx, 0
   inc rdi
   jmp ft_atoi_check_base_syntax_unique_loop
 
@@ -114,7 +114,6 @@ ft_atoi_check_base_syntax_unique_loop:
 
 ft_atoi_compute_result:
   enter 8, 0
-  xor rcx, rcx
   push rsi
   mov rsi, wspace        ; continue to next function
 
