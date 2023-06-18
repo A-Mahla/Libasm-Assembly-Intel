@@ -71,7 +71,7 @@ void    ftStrcpyTest( void ) {
 	bzero(dst, 20);
 
 	printf(
-        "\t  ft_strcpy(dst, \"\\xff\")\t\t=>\t '%#x' (return value) / '%#x' (dst value)\n",
+        "\t  ft_strcpy(dst, \"\\xff\")\t=>\t '%#x' (return value) / '%#x' (dst value)\n",
         ft_strcpy(dst, "\xff")[0]
         ,dst[0]
     );
