@@ -2,16 +2,16 @@
 global ft_list_sort
 
 section .text
-ft_list_sort:              ; rdi = t_list **begin, rsi = int (*cmp)()
+ft_list_sort:                    ; rdi = t_list **begin, rsi = int (*cmp)()
   enter 0, 0
-  mov rdx, QWORD [rdi]     ; rdx = t_list *begin, rcx = t_list *current
+  mov rdx, QWORD [rdi]           ; rdx = t_list *begin, rcx = t_list *current
   cmp rsi, 0
   jz ft_list_sort_ret
 
 ft_list_sort_loop_begin:
-  cmp rdx, 0               ; if begin == NULL
-  jz ft_list_sort_ret      ; return
-  mov rcx, [rdx+8]         ; current = begin->next
+  cmp rdx, 0                     ; if begin == NULL
+  jz ft_list_sort_ret            ; return
+  mov rcx, [rdx+8]               ; current = begin->next
 
 ft_list_sort_loop_current:        
   cmp rcx, 0x0                   ; if current == NULL            
