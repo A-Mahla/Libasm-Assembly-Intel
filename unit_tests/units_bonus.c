@@ -5,6 +5,19 @@
 #include <stdlib.h>
 #include <string.h>
 
+void	freeList(t_list **begin) {
+
+	t_list *tmp;
+
+	while (*begin) {
+		tmp = *begin;
+		*begin = (*begin)->next;
+		free(tmp->data);
+		free(tmp);
+	}
+
+}
+
 void    printList( t_list *begin ) {
 
   int i = 1;
@@ -20,6 +33,8 @@ void    printList( t_list *begin ) {
 }
 
 void    ftAtoiBaseTest( void ) {
+
+//  White Space "\t\n\v\f\r +-
 
   	printf("\n\t========== ft_atoi_base tests ===========\n\n");
 
@@ -138,18 +153,7 @@ void    ftListRemoveTest( t_list **begin ) {
   printf("\t*** be free to use these function with yours tests !\n");
   printf("\t***  Compiling usage:\n\t***    clang -o a.out *.o -L /path/to/libasm.a/ -lasm\n\n");
 
-}
-
-void	freeList(t_list **begin) {
-
-	t_list *tmp;
-
-	while (*begin) {
-		tmp = *begin;
-		*begin = (*begin)->next;
-		free(tmp->data);
-		free(tmp);
-	}
+  freeList(begin);
 
 }
 
@@ -163,9 +167,7 @@ int     main(void) {
   ftListSizeTest(begin);
   ftListSortTest(&begin);
   ftListRemoveTest(&begin);
-//  printList(begin);
-//  freeList(&begin);
   return 0;
 
 }
-// "\t\n\v\f\r +-
+
