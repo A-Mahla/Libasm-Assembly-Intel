@@ -17,7 +17,7 @@ ft_strcpy_loop:
   inc rsi
   jmp ft_strcpy_loop
 
-ft_strcpy_ret
+ft_strcpy_ret:
   pop rbp
   ret
 
