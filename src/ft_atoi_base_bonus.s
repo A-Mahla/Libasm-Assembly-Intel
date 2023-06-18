@@ -117,7 +117,7 @@ ft_atoi_compute_result:   ; rdi = char *str, rsi = char *base
   push rsi
   mov rsi, wspace         ; continue to next function
 
-ft_atoi_compute_result_while_wspace:
+ft_atoi_compute_result_while_wspace:  ; rdi = char *str, rsi = char *wspace
   cmp BYTE [rdi], 0
   je ft_atoi_compute_result_middle
   call ft_atoi_check_is_in_string
